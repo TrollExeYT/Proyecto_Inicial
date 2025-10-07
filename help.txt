@@ -1,0 +1,37 @@
+Comandos basicos para el proyecto
+
+Creación de ambiente virtual:
+
+python -m venv .venv # Crea el entorno virtual
+
+.venv\Scripts\activate # Activa el entorno virtual
+
+deactivate # Desactiva el entorno virtual
+
+pip freeze > requirements.txt # Para crear los requerimientos
+
+pip install -r requirements.txt # Para instalar los requerimientos
+
+
+Django:
+
+django-admin startproject myproject # Iniciar proyecto
+
+python manage.py startapp myapp # Crear una app dentro del proyecto
+
+python manage.py runserver # Iniciar servidor del proyecto, con ctrl+c en el cmd se cierra el servidor
+
+# Migrar base de datos, se debe hacer en el siguiente orden
+1.- python manage.py makemigrations
+
+2.- python manage.py migrate
+
+Git:
+
+git pull # Revisar actualizaciones
+
+git add . # Añadir todos los cambios
+
+git commit -m "MENSAJE IMPORTANTE" # Registrar con un mensaje
+
+git push # Meter pal repositorio
