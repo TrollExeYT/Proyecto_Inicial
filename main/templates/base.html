@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abejjas</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="div-nav-bar">
+            <p>Abejjas</p>
+            {% block left-bar %}
+
+            {% endblock %}
+        </div>
+        <div class="div-nav-bar">
+            {% block right-bar %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
