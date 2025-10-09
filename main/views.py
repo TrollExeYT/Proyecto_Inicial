@@ -10,7 +10,8 @@ def test(request):
 def add_event(request):
     if request.method == "POST":
         data = request.POST
-        if 0 < int(data["division"]) < 2 or 0 < int(data["subdivision"]) < 2:
+        max_div = len(EventConnector.DIVISIONS)
+        if 0 < int(data["division"]) < max_div or 0 < int(data["subdivision"]) < max_div:
             try:
                 connection = EventConnector(
                     calendar_id=request.POST['calendar_id'],

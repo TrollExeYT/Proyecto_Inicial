@@ -38,6 +38,6 @@ class EventConnector(models.Model):
     )
 
     division = models.IntegerField(choices=DIVISIONS)
-    subdivision = IntegerField(min_value=0, max_value=2)
+    subdivision = models.IntegerField()
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
