@@ -13,8 +13,7 @@ p, h1 {
     flex-direction: row;
     justify-content: space-between;
 
-    background-color: red;
-
+    border-bottom: black solid 1px;
 }
 
 .div-nav-bar{
