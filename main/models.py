@@ -37,6 +37,8 @@ class EventConnector(models.Model):
     )
 
     division = models.IntegerField(choices=DIVISIONS)
-    subdivision = models.IntegerField()
+    subdivision = models.IntegerField() # del 0 al 2 sin repetir por calendario y division
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    REQUIRED_FIELDS = ['calendar', 'event', 'division', 'subdivision']
