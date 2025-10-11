@@ -18,6 +18,9 @@ class Event(models.Model):
 
     REQUIRED_FIELDS = ['name', 'photo_path']
 
+    def __str__(self):
+        return self.name
+
 # Calendarios
 class Calendar(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
@@ -27,18 +30,40 @@ class Calendar(models.Model):
 
     REQUIRED_FIELDS = ['user', 'name']
 
+    def __str__(self):
+        return f"{self.name} de {self.user.username}"
+
 # Conectores y divisores de eventos
 # Crear una view especifica para
 class EventConnector(models.Model):
-    DIVISIONS = (
+    DAYS = (
+        (0, 'Lunes'),
+        (1, 'Martes'),
+        (2, 'Miercoles'),
+        (3, 'Jueves'),
+        (4, 'Viernes'),
+        (5, 'Sab y Dom'),
+    )
+
+    GROUPS = (
         (0, 'Dia'),
         (1, 'Tarde'),
         (2, 'Noche'),
     )
 
-    division = models.IntegerField(choices=DIVISIONS)
-    subdivision = models.IntegerField() # del 0 al 2 sin repetir por calendario y division
+    DIVISIONS = (
+        (0, '0'),
+        (1, '1'),
+        (2, '2'),
+    )
+
+    day = models.SmallIntegerField(choices=DAYS)
+    group = models.SmallIntegerField(choices=GROUPS)
+    division = models.SmallIntegerField(choices=DIVISIONS)
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
-    REQUIRED_FIELDS = ['calendar', 'event', 'division', 'subdivision']
+    REQUIRED_FIELDS = ['day', 'group', 'division', 'calendar', 'event']
+
+    def __str__(self):
+        return f"{self.calendar} - Evento: {self.event.name} - Posicion: ({self.GROUPS[self.group][1]} - {self.division})"
