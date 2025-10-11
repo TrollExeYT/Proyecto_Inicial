@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
-from django.forms import IntegerField
 
 # Modelo de los usuarios
 class User(AbstractBaseUser):

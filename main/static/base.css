@@ -3,20 +3,34 @@
     margin: 0;
 }
 
-p, h1 {
-    display: inline-block;
-    padding: 32px;
+
+body {
+    height: 100vh;
+    max-height: 100vh;
 }
+
+main {
+    width: 100%;
+    height: calc(100vh - 66px);
+    background-color: #ffc75a;
+}
+
 
 .nav-bar{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    border-bottom: black solid 1px;
+    align-items: center;
+    background-color: orange;
+    height: 64px;
+    border-bottom: darkorange solid 2px;
 }
 
 .div-nav-bar{
     display: flex;
     flex-direction: row;
+}
+
+.div-nav-bar p{
+    padding: 16px;
 }
