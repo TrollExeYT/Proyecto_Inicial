@@ -11,12 +11,15 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+def calendar_photo_path(instance, filename):
+    return f"users/{instance.user.id}/{filename}"
+
 # Calendarios
 class Calendar(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Buscar manera de subir archivos para los calendarios o en caso contrario crear predeterminados
-    # photo = models.ImageField()
+    # Hay que buscar como usar el DEFAULT en la foto - B
+    photo = models.ImageField(upload_to=calendar_photo_path, default='')
 
     REQUIRED_FIELDS = ['user', 'name']
 
