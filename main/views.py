@@ -7,7 +7,7 @@ def user_login(request):
     if request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'login.html', {'error': 'Usuario y/o Contraseña incorrecta'})
+            return render(request, 'login.html', {'message': 'Usuario y/o Contraseña incorrecta'})
         login(request, user)
         return redirect('')
     return render(request, 'login.html')
