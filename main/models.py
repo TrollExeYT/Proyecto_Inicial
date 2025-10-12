@@ -1,15 +1,5 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import User
 from django.db import models
-
-# Modelo de los usuarios
-class User(AbstractBaseUser):
-    username = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=100)
-
-    USERNAME_FIELD = 'username'
-    PASSWORD_FIELD = 'password'
-
-    REQUIRED_FIELDS = ['username', 'password']
 
 # Modelo de los eventos predeterminados
 class Event(models.Model):
