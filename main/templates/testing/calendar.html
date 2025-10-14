@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ info }}</p>
+    <p>JKDsakjdbhajs</p>
+	{% for event in events_calendar %}
+		<p>{{ event }}</p>
+	{% empty %}
+        <p>ta vacio lol</p>
+	{% endfor %}
+
+{% endblock %}

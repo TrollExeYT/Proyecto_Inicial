@@ -26,6 +26,7 @@ python manage.py runserver # Iniciar servidor del proyecto, con ctrl+c en el cmd
 
 2.- python manage.py migrate
 
+
 Git:
 
 git pull # Revisar actualizaciones

@@ -19,7 +19,7 @@ class Calendar(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # Hay que buscar como usar el DEFAULT en la foto - B
-    photo = models.ImageField(upload_to=calendar_photo_path, default='')
+    photo = models.ImageField(upload_to=calendar_photo_path, default='', blank=True, null=True)
 
     REQUIRED_FIELDS = ['user', 'name']
 
@@ -59,4 +59,4 @@ class EventConnector(models.Model):
     REQUIRED_FIELDS = ['day', 'group', 'division', 'calendar', 'event']
 
     def __str__(self):
-        return f"{self.calendar} - Evento: {self.event.name} - Posicion: ({self.GROUPS[self.group][1]} - {self.division})"
+        return f"{self.DAYS[self.day][1]} - {self.GROUPS[self.group][1]} - {self.event.name}"
