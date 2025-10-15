@@ -2,9 +2,11 @@ Comandos basicos para el proyecto
 
 Creación de ambiente virtual:
 
-python -m venv .venv # Crea el entorno virtual
+python -m venv .venv # Crea el entorno virtual WINDOWS
+python3 -m venv .venv # MAC, usar python3 para todos los comandos que digan python
 
-.venv\Scripts\activate # Activa el entorno virtual
+.venv\Scripts\activate # Activa el entorno virtual WINDOWS
+source .venv\Scripts\activate # MAC
 
 deactivate # Desactiva el entorno virtual
 

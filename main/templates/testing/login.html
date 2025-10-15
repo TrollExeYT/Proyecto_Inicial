@@ -2,15 +2,13 @@
 
 {% block content %}
     <form action="{% url 'login' %}" method="POST">
-        <label for="">
-            Usuario
-            <input type="text" name="username">
-        </label>
-        <label for="">
-            Contraseña
-            <input type="password" name="password">
-        </label>
         {% csrf_token %}
+        <label for="id_username">
+            <input type="text" placeholder="Usuario" name="username" autofocus required>
+        </label>
+        <label for="id_password">
+            <input type="password" placeholder="Contraseña" name="password" required>
+        </label>
         <button type="submit">Iniciar sesion</button>
     </form>
     {{ message }}

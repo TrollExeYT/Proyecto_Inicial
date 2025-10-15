@@ -5,7 +5,7 @@
 	{% for calendar in info %}
         <a href="{% url 'calendar' calendar.id %}">{{ calendar.name }}</a>
 	{% empty %}
-        <a href="">CREA UN CALENDARIO AHORA UWU</a>
+        <p>Esta un poco vacio :,v</p>
 	{% endfor %}
 
 {% endblock %}

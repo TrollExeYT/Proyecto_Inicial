@@ -9,7 +9,7 @@ def user_login(request):
     if request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'testing/login.html', {'message': 'Usuario y/o Contraseña incorrecta'})
+            return render(request, 'testing/login.html', {'message': 'Usuario y/o Contraseña incorrecta.'})
         login(request, user)
         return redirect('select_calendar')
     return render(request, 'testing/login.html')
@@ -24,12 +24,12 @@ def user_signup(request):
         'message': '',
     }
     if request.method == "POST":
-        if request.POST['password1'] == request.POST['password2']:
+        if request.POST['password1'] == request.POST['password2'] and UserCreationForm(request).is_valid():
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
+                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 context['message'] = 'Usuario creado correctamente'
-            except:
+            except ValueError:
                 context['message'] = 'Ya existe un usuario con este nombre'
         else:
             context['message'] = 'Las contraseñas no coinciden'
@@ -44,12 +44,30 @@ def select_calendar(request):
     return render(request, 'testing/calendar_select.html', context)
 
 @login_required(login_url='login')
-def calendar(request, calendar_id):
-    if Calendar.objects.get(id=calendar_id).user != request.user:
+def create_calendar(request):
+    try:
+        calendar = Calendar.objects.create(user=request.user, name=request.POST['calendar_name'], photo=request.POST['calendar_photo'])
+        calendar.save()
+    except ValueError:
+        pass
+    return redirect('select_calendar')
+
+@login_required(login_url='login')
+def delete_calendar(request, calendar_id):
+    calendar = Calendar.objects.get(id=calendar_id)
+    if calendar.user != request.user:
+        return redirect('select_calendar')
+    calendar.delete()
+    return redirect('select_calendar')
+
+@login_required(login_url='login')
+def view_calendar(request, calendar_id):
+    calendar = Calendar.objects.get(id=calendar_id)
+    if calendar.user != request.user:
         return redirect('select_calendar')
 
     context = {
-        'info': Calendar.objects.get(id=calendar_id),
+        'info': calendar,
         'events_calendar': EventConnector.objects.all().order_by(
             'day',
             'group',
@@ -74,6 +92,7 @@ def add_event(request, calendar_id, event_id, day, group, division):
     try:
         event_connector = EventConnector.objects.create(day=day, group=group, division=division, event_id=event_id, calendar_id=calendar_id)
         event_connector.save()
-    except :
+    except ValueError:
         redirect(edit_calendar, calendar_id)
+
     return redirect('')
