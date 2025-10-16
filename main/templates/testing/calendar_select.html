@@ -13,8 +13,6 @@
 
 	{% for calendar in info %}
         <div class="calendar-div">
-            <img src='' alt='{{ calendar.name }}'>
-            <p></p>
             <a href="{% url 'calendar' calendar.id %}">{{ calendar.name }}</a>
             <p>|</p>
             <a href="{% url 'edit_calendar' calendar.id %}">Editar</a>
