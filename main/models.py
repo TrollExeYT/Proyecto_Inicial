@@ -55,6 +55,7 @@ class EventConnector(models.Model):
     division = models.SmallIntegerField(choices=DIVISIONS)
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    confirmed = models.BooleanField(default=False)
 
     REQUIRED_FIELDS = ['day', 'group', 'division', 'calendar', 'event']
 

@@ -33,4 +33,10 @@ main {
 
 .div-nav-bar p{
     padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar-logo{
+    margin: 8px
 }

@@ -4,7 +4,7 @@ from .views import *
 urlpatterns = [
     path('', user_login, name='login'),
     path('logout', user_logout, name='logout'),
-    path('sign_up', user_signup, name='signup'),
+    path('sign_up', user_signup, name='sign_up'),
     path('select_calendar', select_calendar, name='select_calendar'),
     path('calendar/<int:calendar_id>', view_calendar, name='calendar'),
     path('edit_calendar/<int:calendar_id>', edit_calendar, name='edit_calendar'),

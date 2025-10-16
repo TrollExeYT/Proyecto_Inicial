@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -6,13 +6,18 @@ from .models import *
 
 
 def user_login(request):
+    context = {
+        'form': AuthenticationForm(),
+        'message': '',
+    }
     if request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'testing/login.html', {'message': 'Usuario y/o Contraseña incorrecta.'})
+            context['message'] = 'Usuario y/o Contraseña incorrecta.'
+            return render(request, 'testing/login.html', context)
         login(request, user)
         return redirect('select_calendar')
-    return render(request, 'testing/login.html')
+    return render(request, 'testing/login.html', context)
 
 def user_logout(request):
     logout(request)
@@ -68,7 +73,7 @@ def view_calendar(request, calendar_id):
 
     context = {
         'info': calendar,
-        'events_calendar': EventConnector.objects.all().order_by(
+        'events_calendar': EventConnector.objects.filter(calendar=calendar, confirmed=True).order_by(
             'day',
             'group',
             'division',
@@ -79,7 +84,18 @@ def view_calendar(request, calendar_id):
 
 @login_required(login_url='login')
 def edit_calendar(request, calendar_id):
-    context = {}
+    calendar = Calendar.objects.get(id=calendar_id)
+    if calendar.user != request.user:
+        return redirect('select_calendar')
+
+    context = {
+        'info': calendar,
+        'events_calendar': EventConnector.objects.filter(calendar=calendar, confirmed=True).order_by(
+            'day',
+            'group',
+            'division',
+        ),
+    }
     return render(request, 'calendar_edit.html', context)
 
 @login_required(login_url='login')

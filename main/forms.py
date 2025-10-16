@@ -1,7 +1,11 @@
-from django.contrib.auth.models import User
 from django import forms
+from main.models import Calendar
 
-
-class UserCreationForm(forms.Form):
-    pass
-
+class CalendarForm(forms.ModelForm):
+    class Meta:
+        model = Calendar
+        fields = ['name', 'photo']
+        labels = {
+            'name': 'Nombre',
+            'photo': 'Foto',
+        }
