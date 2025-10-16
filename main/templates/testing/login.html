@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+{% endblock %}
 
 {% block content %}
     <form action="{% url 'login' %}" method="POST">
@@ -7,4 +12,5 @@
         <button type="submit">Iniciar sesion</button>
     </form>
     {{ message }}
+    <a href="{% url 'signup' %}">Registrate</a>
 {% endblock %}

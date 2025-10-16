@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+{% endblock %}
+
+{% block left-bar %}
+    <p><a href="{% url 'create_calendar' %}">Crear Calendario</a></p>
+{% endblock %}
 
 {% block content %}
 
 	{% for calendar in info %}
-        <a href="{% url 'calendar' calendar.id %}">{{ calendar.name }}</a>
+        <div class="calendar-div">
+            <img src='' alt='{{ calendar.name }}'>
+            <p></p>
+            <a href="{% url 'calendar' calendar.id %}">{{ calendar.name }}</a>
+            <p>|</p>
+            <a href="{% url 'edit_calendar' calendar.id %}">Editar</a>
+            <p>|</p>
+            <a href="{% url 'delete_calendar' calendar.id %}">Eliminar</a>
+        </div>
 	{% empty %}
         <p>Esta un poco vacio :,v</p>
 	{% endfor %}

@@ -1,0 +1,14 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-div{
+    display: flex;
+}
+
+.calendar-div p{
+    padding: 0 10px;
+}

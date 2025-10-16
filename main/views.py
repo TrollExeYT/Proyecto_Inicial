@@ -2,10 +2,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+
+from .forms import CalendarForm
 from .models import *
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('select_calendar')
+
     context = {
         'form': AuthenticationForm(),
         'message': '',
@@ -24,10 +29,14 @@ def user_logout(request):
     return redirect('login')
 
 def user_signup(request):
+    if request.user.is_authenticated:
+        return redirect('select_calendar')
+
     context = {
         'form': UserCreationForm(),
         'message': '',
     }
+
     if request.method == "POST":
         if request.POST['password1'] == request.POST['password2'] and UserCreationForm(request).is_valid():
             try:
@@ -50,13 +59,16 @@ def select_calendar(request):
 
 @login_required(login_url='login')
 def create_calendar(request):
-    try:
-        calendar = Calendar.objects.create(user=request.user, name=request.POST['calendar_name'], photo=request.POST['calendar_photo'])
-        calendar.save()
-    except ValueError:
-        pass
-    return redirect('select_calendar')
+    if request.method == "POST":
+        try:
+            calendar = Calendar.objects.create(user=request.user, name=request.POST['name'],
+                                               photo=request.POST['photo'])
+            calendar.save()
+            return redirect('calendar', calendar_id=calendar.id)
+        except ValueError:
+            pass
 
+    return render(request, 'testing/create_calendar.html', {'form': CalendarForm()})
 @login_required(login_url='login')
 def delete_calendar(request, calendar_id):
     calendar = Calendar.objects.get(id=calendar_id)

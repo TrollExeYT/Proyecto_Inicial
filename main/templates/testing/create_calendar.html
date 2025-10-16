@@ -5,13 +5,16 @@
     <link rel="stylesheet" href="{% static 'css/testing.css' %}">
 {% endblock %}
 
+{% block left-bar %}
+	<p><a href="{% url 'select_calendar' %}">Volver al inicio</a></p>
+{% endblock %}
+
 {% block content %}
-    <form action="{% url 'signup' %}" method="POST">
+
+    <form action="{% url 'create_calendar' %}" method="POST">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Registrarse</button>
+        <button type="submit">Crear</button>
     </form>
-    <br>
-    <br>
-    <a href="{% url 'login' %}">Iniciar sesion</a>
+
 {% endblock %}

@@ -8,14 +8,3 @@
 {% block left-bar %}
 	<p><a href="{% url 'select_calendar' %}">Volver al inicio</a></p>
 {% endblock %}
-
-{% block content %}
-    <p>{{ info }}</p>
-    <br>
-	{% for event in events_calendar %}
-		<p>{{ event }}</p>
-	{% empty %}
-        <p>ta vacio lol</p>
-	{% endfor %}
-
-{% endblock %}
