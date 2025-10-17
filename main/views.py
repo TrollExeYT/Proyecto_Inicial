@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .forms import CalendarForm
+from .forms import CalendarForm, AddEventForm
 from .models import *
 
 
@@ -101,6 +101,7 @@ def edit_calendar(request, calendar_id):
         return redirect('select_calendar')
 
     context = {
+        'form': AddEventForm,
         'info': calendar,
         'events_calendar': EventConnector.objects.filter(calendar=calendar, confirmed=True).order_by(
             'day',
@@ -108,19 +109,17 @@ def edit_calendar(request, calendar_id):
             'division',
         ),
     }
-    return render(request, 'calendar_edit.html', context)
+    return render(request, 'testing/calendar_edit.html', context)
 
 @login_required(login_url='login')
 # Es solo una idea y si encontramos una manera mas optimizada usaremos esa - B
-def add_event(request, calendar_id, event_id, day, group, division):
-    context = {}
+def add_event(request, calendar_id):
     if Calendar.objects.get(id=calendar_id).user != request.user:
         return redirect('select_calendar')
 
     try:
-        event_connector = EventConnector.objects.create(day=day, group=group, division=division, event_id=event_id, calendar_id=calendar_id)
-        event_connector.save()
+        pass
     except ValueError:
-        redirect(edit_calendar, calendar_id)
+        pass
 
-    return redirect('')
+    return redirect('edit_calendar', calendar_id)

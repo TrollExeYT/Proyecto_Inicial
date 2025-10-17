@@ -40,3 +40,7 @@ main {
 .nav-bar-logo{
     padding: 8px
 }
+
+.hidden {
+    display: none;
+}

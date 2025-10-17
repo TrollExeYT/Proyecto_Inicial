@@ -1,7 +1,4 @@
 from django.urls import path
-from django.conf.urls.static import static
-
-from config import settings
 from .views import *
 
 urlpatterns = [
@@ -11,8 +8,8 @@ urlpatterns = [
     path('select_calendar/', select_calendar, name='select_calendar'),
     path('create_calendar/', create_calendar, name='create_calendar'),
     path('delete_calendar/<int:calendar_id>/', delete_calendar, name='delete_calendar'),
-    path('calendar/<int:calendar_id>/', view_calendar, name='calendar'),
+    path('view_calendar/<int:calendar_id>/', view_calendar, name='calendar'),
     path('edit_calendar/<int:calendar_id>/', edit_calendar, name='edit_calendar'),
     # RECORDATORIO QUE ESTO ES UNA IDEA  - B
-    path('edit_calendar/<int:calendar_id>/add_event_<int:event_id>/day_<int:day>/group_<int:group>/division_<int:division>/', add_event, name='add_event'),
+    path('edit_calendar/<int:calendar_id>/add_event/', add_event, name='add_event'),
 ]
