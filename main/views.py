@@ -104,7 +104,8 @@ def edit_calendar(request, calendar_id):
         'form': AddEventForm,
         'info': calendar,
         'events': Event.objects.all().order_by('name'),
-        'connectors': EventConnector.objects.filter(calendar=calendar),
+        'con_confirmed': EventConnector.objects.filter(calendar=calendar, confirmed=True),
+        'con_unconfirmed': EventConnector.objects.filter(calendar=calendar, confirmed=False),
     }
     return render(request, 'testing/calendar_edit.html', context)
 
