@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testing_calendar_edit.css' %}">
     <script src="{% static 'js/testing_edit_calendar.js' %}"></script>
 {% endblock %}
 
@@ -11,12 +11,36 @@
     {{ message }}
 {% endblock %}
 
+{% block right-bar %}
+	<p><a href="{% url 'undo_events' info.id %}">Deshacer cambios</a></p>
+    <p><a href="{% url 'confirm_events' info.id %}">Confirmar</a></p>
+{% endblock %}
+
 {% block content %}
-    <a href="javascript:SendFormEvent()">Enviar form</a>
+    <div class="calendar-container centered">
+        <a href="javascript:SetLocation(0,0,0)">Test 1</a>
+        <a href="javascript:SetLocation(2,0,0)">Test 2</a>
+        <ul>
+            {% for con in connectors %}
+            	<li>{{ con }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="events-container centered">
+        <p class="event-element">Eventos</p>
+        <ul>
+            {% for event in events %}
+                <li class="event-element"><a href="javascript:SetEvent({{ event.id }})">{{ event.name }}</a></li>
+            {% empty %}
+                <p>No hay eventos XD</p>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
 
 {% block hidden %}
-    <form action="{% url 'add_event' info.id %}" method="GET" id="form-event_connector">
+    <form action="{% url 'add_event' info.id %}" method="POST" id="form-event_connector">
+        {% csrf_token %}
         {{ form }}
     </form>
 {% endblock %}

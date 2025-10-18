@@ -64,7 +64,7 @@ def create_calendar(request):
             calendar = Calendar.objects.create(user=request.user, name=request.POST['name'],
                                                photo=request.POST['photo'])
             calendar.save()
-            return redirect('calendar', calendar_id=calendar.id)
+            return redirect('view_calendar', calendar_id=calendar.id)
         except ValueError:
             pass
 
@@ -85,7 +85,7 @@ def view_calendar(request, calendar_id):
 
     context = {
         'info': calendar,
-        'events_calendar': EventConnector.objects.filter(calendar=calendar, confirmed=True).order_by(
+        'events_calendar': EventConnector.objects.filter(calendar=calendar).order_by(
             'day',
             'group',
             'division',
@@ -103,13 +103,52 @@ def edit_calendar(request, calendar_id):
     context = {
         'form': AddEventForm,
         'info': calendar,
-        'events_calendar': EventConnector.objects.filter(calendar=calendar, confirmed=True).order_by(
-            'day',
-            'group',
-            'division',
-        ),
+        'events': Event.objects.all().order_by('name'),
+        'connectors': EventConnector.objects.filter(calendar=calendar),
     }
     return render(request, 'testing/calendar_edit.html', context)
+
+@login_required(login_url='login')
+def confirm_events(request, calendar_id):
+    if Calendar.objects.get(id=calendar_id).user != request.user:
+        return redirect('select_calendar')
+
+    data = EventConnector.objects.filter(
+        calendar_id=calendar_id,
+        confirmed=False,
+    )
+
+    for event in data:
+        pre_event = EventConnector.objects.filter(
+            calendar_id=calendar_id,
+            day=event.day,
+            group=event.group,
+            division=event.division,
+            confirmed=True,
+        )
+
+        if pre_event.exists():
+            pre_event.delete()
+
+        event.confirmed = True
+
+    return redirect('view_calendar', calendar_id=calendar_id)
+
+@login_required(login_url='login')
+def undo_events(request, calendar_id):
+    if Calendar.objects.get(id=calendar_id).user != request.user:
+        return redirect('select_calendar')
+
+    data = EventConnector.objects.filter(
+        calendar_id=calendar_id,
+        confirmed=False,
+    )
+
+    for event in data:
+
+        event.delete()
+
+    return redirect('edit_calendar', calendar_id=calendar_id)
 
 @login_required(login_url='login')
 # Es solo una idea y si encontramos una manera mas optimizada usaremos esa - B
@@ -118,8 +157,27 @@ def add_event(request, calendar_id):
         return redirect('select_calendar')
 
     try:
-        pass
+        pre_event = EventConnector.objects.filter(
+            calendar_id=calendar_id,
+            day=request.POST['day'],
+            group=request.POST['group'],
+            division=request.POST['division'],
+            confirmed=False,
+        )
+
+        if pre_event.exists():
+            pre_event.delete()
+
+        connector = EventConnector.objects.create(
+            day=request.POST['day'],
+            group=request.POST['group'],
+            division=request.POST['division'],
+            calendar=Calendar.objects.get(id=calendar_id),
+            event_id=request.POST['event'],
+            confirmed=False
+        )
+        connector.save()
     except ValueError:
         pass
 
-    return redirect('edit_calendar', calendar_id)
+    return redirect('edit_calendar', calendar_id=calendar_id)

@@ -1,0 +1,25 @@
+main {
+    display: flex;
+}
+
+.centered{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-container{
+    height: 100%;
+    width: 75%;
+}
+
+.events-container{
+    background-color: #feca4a;
+    height: 100%;
+    width: 25%;
+    border-left: #f8b351 solid 2px;
+}
+
+.event-element{
+    padding: 8px;
+}

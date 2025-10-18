@@ -12,7 +12,7 @@ body {
 main {
     width: 100%;
     height: calc(100vh - 66px);
-    background-color: #ffc75a;
+    background-color: #fede54;
 }
 
 
@@ -21,9 +21,9 @@ main {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: orange;
+    background-color: #feca4a;
     height: 64px;
-    border-bottom: darkorange solid 2px;
+    border-bottom: #f8b351 solid 2px;
 }
 
 .div-nav-bar{

@@ -13,7 +13,7 @@
 
 	{% for calendar in info %}
         <div class="calendar-div">
-            <a href="{% url 'calendar' calendar.id %}">{{ calendar.name }}</a>
+            <a href="{% url 'view_calendar' calendar.id %}">{{ calendar.name }}</a>
             <p>|</p>
             <a href="{% url 'edit_calendar' calendar.id %}">Editar</a>
             <p>|</p>
