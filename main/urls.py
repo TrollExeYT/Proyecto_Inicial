@@ -8,6 +8,7 @@ urlpatterns = [
     path('select_calendar/', select_calendar, name='select_calendar'),
     path('create_calendar/', create_calendar, name='create_calendar'),
     path('delete_calendar/<int:calendar_id>/', delete_calendar, name='delete_calendar'),
+    path('edit_calendar/<int:calendar_id>/clean', clean_calendar, name='clean_calendar'),
     path('view_calendar/<int:calendar_id>/', view_calendar, name='view_calendar'),
     path('edit_calendar/<int:calendar_id>/', edit_calendar, name='edit_calendar'),
     # RECORDATORIO QUE ESTO ES UNA IDEA  - B

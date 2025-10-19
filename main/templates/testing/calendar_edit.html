@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block right-bar %}
+    <p><a href="{% url 'clean_calendar' info.id %}">Limpiar Calendario</a></p>
 	<p><a href="{% url 'undo_events' info.id %}">Deshacer cambios</a></p>
     <p><a href="{% url 'confirm_events' info.id %}">Confirmar</a></p>
 {% endblock %}

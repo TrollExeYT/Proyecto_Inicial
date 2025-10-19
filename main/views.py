@@ -85,6 +85,18 @@ def delete_calendar(request, calendar_id):
     return redirect('select_calendar')
 
 @login_required(login_url='login')
+def clean_calendar(request, calendar_id):
+    calendar = Calendar.objects.get(id=calendar_id)
+    if calendar.user != request.user:
+        return redirect('select_calendar')
+
+    events = EventConnector.objects.filter(calendar=calendar)
+
+    events.delete()
+
+    return redirect('edit_calendar', calendar_id=calendar.id)
+
+@login_required(login_url='login')
 def view_calendar(request, calendar_id):
     calendar = Calendar.objects.get(id=calendar_id)
     if calendar.user != request.user:
