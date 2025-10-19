@@ -12,7 +12,7 @@
 {% block content %}
 
 	{% for calendar in info %}
-        <div class="calendar-div">
+        <div class="calendar-container">
             <a href="{% url 'view_calendar' calendar.id %}">{{ calendar.name }}</a>
             <p>|</p>
             <a href="{% url 'edit_calendar' calendar.id %}">Editar</a>

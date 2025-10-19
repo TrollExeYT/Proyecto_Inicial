@@ -59,5 +59,8 @@ class EventConnector(models.Model):
 
     REQUIRED_FIELDS = ['day', 'group', 'division', 'calendar', 'event']
 
+    def position(self):
+        return [self.day, self.group, self.division]
+
     def __str__(self):
-        return f"{self.DAYS[self.day][1]} - {self.GROUPS[self.group][1]} - {self.event.name}"
+        return f"{self.DAYS[self.day][1]} - {self.GROUPS[self.group][1]} - {self.event.name} - Confirmado: {self.confirmed}"

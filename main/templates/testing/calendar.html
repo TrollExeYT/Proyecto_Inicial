@@ -11,11 +11,55 @@
 
 {% block content %}
     <p>{{ info }}</p>
-    <br>
-	{% for event in events_calendar %}
-		<p>{{ event }}</p>
-	{% empty %}
-        <p>ta vacio lol</p>
-	{% endfor %}
+	<div class="calendar-container">
+        <div class="day-container">
+            <p class="day-title">Lunes</p>
+            {% for event in monday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+        <div class="day-container">
+            <p class="day-title">Martes</p>
+            {% for event in tuesday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+        <div class="day-container">
+            <p class="day-title">Miercoles</p>
+            {% for event in wednesday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+        <div class="day-container">
+            <p class="day-title">Jueves</p>
+            {% for event in thursday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+        <div class="day-container">
+            <p class="day-title">Viernes</p>
+            {% for event in friday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+        <div class="day-container">
+            <p class="day-title">Sabado y Domingo</p>
+            {% for event in saturday_and_sunday %}
+                <p>{{ event }}</p>
+            {% empty %}
+                <p>ta vacio lol</p>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

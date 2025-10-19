@@ -6,7 +6,6 @@ function SetEvent(id_event){
     event.setAttribute('value', String(id_event));
     event_selected = true;
 }
-
 function SetLocation(day, group, division){
     // Selecionar la posicion en la que se va a enviar el evento
     document.getElementById('id_day').value = day;

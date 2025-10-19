@@ -5,10 +5,18 @@ main {
     align-items: center;
 }
 
-.calendar-div{
+.calendar-container {
     display: flex;
 }
+.calendar-container a{
+    padding: 0 8px;
+}
 
-.calendar-div p{
-    padding: 0 10px;
+.day-container {
+    padding: 16px;
+    text-align: center;
+}
+
+.day-title{
+    padding: 4px 0;
 }

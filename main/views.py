@@ -1,3 +1,4 @@
+from PIL.features import version_feature
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -38,15 +39,18 @@ def user_signup(request):
     }
 
     if request.method == "POST":
-        if request.POST['password1'] == request.POST['password2'] and UserCreationForm(request).is_valid():
+        if not UserCreationForm(request.POST).is_valid():
+            context['form'] = UserCreationForm(request.POST)
+        else:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                user = User.objects.create_user(
+                    username=request.POST['username'],
+                    password=request.POST['password1']
+                )
                 user.save()
                 context['message'] = 'Usuario creado correctamente'
             except ValueError:
                 context['message'] = 'Ya existe un usuario con este nombre'
-        else:
-            context['message'] = 'Las contraseñas no coinciden'
     return render(request, 'testing/sign_up.html', context)
 
 
@@ -61,8 +65,11 @@ def select_calendar(request):
 def create_calendar(request):
     if request.method == "POST":
         try:
-            calendar = Calendar.objects.create(user=request.user, name=request.POST['name'],
-                                               photo=request.POST['photo'])
+            calendar = Calendar.objects.create(
+                user=request.user,
+                name=request.POST['name'],
+                photo=request.POST['photo']
+            )
             calendar.save()
             return redirect('view_calendar', calendar_id=calendar.id)
         except ValueError:
@@ -83,13 +90,27 @@ def view_calendar(request, calendar_id):
     if calendar.user != request.user:
         return redirect('select_calendar')
 
+    info = {}
+
+    for day in range(len(EventConnector.DAYS)):
+        data = []
+        for group in range(len(EventConnector.GROUPS)):
+            for division in range(len(EventConnector.DIVISIONS)):
+                if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
+                    data.append(EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event.name)
+                else:
+                    data.append("Vacio")
+
+        info[day] = data
+
     context = {
         'info': calendar,
-        'events_calendar': EventConnector.objects.filter(calendar=calendar).order_by(
-            'day',
-            'group',
-            'division',
-        ),
+        'monday': info[0],
+        'tuesday': info[1],
+        'wednesday': info[2],
+        'thursday': info[3],
+        'friday': info[4],
+        'saturday_and_sunday': info[5],
     }
 
     return render(request, 'testing/calendar.html', context)
@@ -100,12 +121,43 @@ def edit_calendar(request, calendar_id):
     if calendar.user != request.user:
         return redirect('select_calendar')
 
+    info = {}
+
+    for day in range(len(EventConnector.DAYS)):
+        data = []
+        for group in range(len(EventConnector.GROUPS)):
+            for division in range(len(EventConnector.DIVISIONS)):
+                if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=False).exists():
+                    data.append(
+                        [
+                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=False).event.name,
+                            [day, group, division]
+                        ]
+                    )
+                elif EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
+                    data.append(
+                        [
+                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event.name,
+                            [day, group, division]
+                        ]
+                    )
+                else:
+                    data.append(
+                        ["Vacio", [day, group, division]]
+                    )
+
+        info[day] = data
+
     context = {
         'form': AddEventForm,
         'info': calendar,
         'events': Event.objects.all().order_by('name'),
-        'con_confirmed': EventConnector.objects.filter(calendar=calendar, confirmed=True),
-        'con_unconfirmed': EventConnector.objects.filter(calendar=calendar, confirmed=False),
+        'monday': info[0],
+        'tuesday': info[1],
+        'wednesday': info[2],
+        'thursday': info[3],
+        'friday': info[4],
+        'saturday_and_sunday': info[5],
     }
     return render(request, 'testing/calendar_edit.html', context)
 
@@ -120,6 +172,7 @@ def confirm_events(request, calendar_id):
     )
 
     for event in data:
+
         pre_event = EventConnector.objects.filter(
             calendar_id=calendar_id,
             day=event.day,
@@ -132,6 +185,7 @@ def confirm_events(request, calendar_id):
             pre_event.delete()
 
         event.confirmed = True
+        event.save()
 
     return redirect('view_calendar', calendar_id=calendar_id)
 
@@ -146,7 +200,6 @@ def undo_events(request, calendar_id):
     )
 
     for event in data:
-
         event.delete()
 
     return redirect('edit_calendar', calendar_id=calendar_id)

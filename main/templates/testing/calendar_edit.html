@@ -17,14 +17,57 @@
 {% endblock %}
 
 {% block content %}
-    <div class="calendar-container centered">
-        <a href="javascript:SetLocation(0,0,0)">Test 1</a>
-        <a href="javascript:SetLocation(2,0,0)">Test 2</a>
-        <ul>
-            {% for con in connectors %}
-            	<li>{{ con }}</li>
-            {% endfor %}
-        </ul>
+    <div class="main-calendar-container centered">
+        <div class="calendar-container">
+            <div class="day-container">
+                <p class="day-title">Lunes</p>
+                {% for event in monday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+            <div class="day-container">
+                <p class="day-title">Martes</p>
+                {% for event in tuesday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+            <div class="day-container">
+                <p class="day-title">Miercoles</p>
+                {% for event in wednesday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+            <div class="day-container">
+                <p class="day-title">Jueves</p>
+                {% for event in thursday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+            <div class="day-container">
+                <p class="day-title">Viernes</p>
+                {% for event in friday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+            <div class="day-container">
+                <p class="day-title">Sabado y Domingo</p>
+                {% for event in saturday_and_sunday %}
+                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
+                {% empty %}
+                    <p>ta vacio lol</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div class="events-container centered">
         <p class="event-element">Eventos</p>
