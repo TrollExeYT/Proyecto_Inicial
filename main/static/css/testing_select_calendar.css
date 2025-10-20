@@ -1,11 +1,11 @@
 .view-calendar-container {
-    height: 280px;
-    width: 280px;
+    height: 248px;
+    width: 248px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f8b351;
+    background-color: #feca4a;
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
 }
 

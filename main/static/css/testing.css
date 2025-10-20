@@ -7,7 +7,11 @@ main {
 
 .calendar-container {
     display: flex;
+    background-color: #feca4a;
+    border: #f8b351 solid 2px;
+    padding: 16px;
 }
+
 .calendar-container a{
     padding: 0 8px;
 }
@@ -23,7 +27,6 @@ main {
 
 .hexagon {
     display: block;
-    background: cadetblue;
     /*-webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);*/
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
 }

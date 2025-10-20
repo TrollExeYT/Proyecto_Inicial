@@ -1,5 +1,8 @@
 .calendar-main-container{
     display: flex;
+    background-color: #feca4a;
+    border: #f8b351 solid 2px;
+    padding: 16px;
 }
 
 .calendar-day-block{
