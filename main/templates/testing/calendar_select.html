@@ -19,10 +19,9 @@
 	{% for calendar in info %}
         <div class="view-calendar-container">
             <a href="{% url 'view_calendar' calendar.id %}">
-                <img src="{{ calendar.photo.url }}" alt="" height="64px" width="64px">
+                <img class="hexagon" src="{{ calendar.photo.url }}" alt="" height="128px" width="128px">
             </a>
             <p>{{ calendar.name }}</p>
-            <p>|</p>
             <a href="{% url 'delete_calendar' calendar.id %}">Eliminar</a>
         </div>
 	{% empty %}
