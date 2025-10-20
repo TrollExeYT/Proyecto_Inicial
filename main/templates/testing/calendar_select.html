@@ -3,6 +3,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testing_select_calendar.css' %}">
 {% endblock %}
 
 {% block left-bar %}
@@ -16,8 +17,11 @@
 {% block content %}
 
 	{% for calendar in info %}
-        <div class="calendar-container">
-            <a href="{% url 'view_calendar' calendar.id %}">{{ calendar.name }}</a>
+        <div class="view-calendar-container">
+            <a href="{% url 'view_calendar' calendar.id %}">
+                <img src="{{ calendar.photo.url }}" alt="" height="64px" width="64px">
+            </a>
+            <p>{{ calendar.name }}</p>
             <p>|</p>
             <a href="{% url 'delete_calendar' calendar.id %}">Eliminar</a>
         </div>

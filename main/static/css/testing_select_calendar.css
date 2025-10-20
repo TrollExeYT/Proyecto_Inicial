@@ -1,0 +1,10 @@
+.view-calendar-container {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-calendar-container p, .view-calendar-container a {
+    padding: 0 8px;
+}

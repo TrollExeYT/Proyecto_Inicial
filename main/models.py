@@ -13,7 +13,7 @@ class Event(models.Model):
         return self.name
 
 def calendar_photo_path(instance, filename):
-    return f"/user_{instance.user.id}/{filename}"
+    return f"user_{instance.user.id}/{filename}"
 
 # Calendarios
 class Calendar(models.Model):
