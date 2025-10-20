@@ -25,9 +25,6 @@
             {% block right-bar %}
 
             {% endblock %}
-            {% if request.user.is_authenticated %}
-                <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
-            {% endif %}
         </div>
     </div>
     <main>

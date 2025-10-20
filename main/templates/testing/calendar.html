@@ -3,61 +3,66 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testing_calendar_elements.css' %}">
 {% endblock %}
 
 {% block left-bar %}
-	<p><a href="{% url 'select_calendar' %}">Volver al inicio</a></p>
+	<p>{{ info }}</p>
+{% endblock %}
+
+{% block right-bar %}
+    <p><a href="{% url 'edit_calendar' info.id %}">Editar</a></p>
+	<p><a href="{% url 'select_calendar' %}">Volver al Inicio</a></p>
 {% endblock %}
 
 {% block content %}
-    <p>{{ info }}</p>
-	<div class="calendar-container">
-        <div class="day-container">
-            <p class="day-title">Lunes</p>
+	<div class="calendar-container centered">
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Lunes</p>
             {% for event in monday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
-        <div class="day-container">
-            <p class="day-title">Martes</p>
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Martes</p>
             {% for event in tuesday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
-        <div class="day-container">
-            <p class="day-title">Miercoles</p>
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Miercoles</p>
             {% for event in wednesday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
-        <div class="day-container">
-            <p class="day-title">Jueves</p>
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Jueves</p>
             {% for event in thursday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
-        <div class="day-container">
-            <p class="day-title">Viernes</p>
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Viernes</p>
             {% for event in friday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
-        <div class="day-container">
-            <p class="day-title">Sabado y Domingo</p>
+        <div class="calendar-day-block">
+            <p class="calendar-day-title">Sabado y Domingo</p>
             {% for event in saturday_and_sunday %}
-                <p>{{ event }}</p>
-            {% empty %}
-                <p>ta vacio lol</p>
+                <p class="calendar-block">
+                    <img src="{% static event.photo_path %}" alt="{{ event }}" height="32px" width="32px">
+                </p>
             {% endfor %}
         </div>
     </div>

@@ -9,13 +9,15 @@
     <p><a href="{% url 'create_calendar' %}">Crear Calendario</a></p>
 {% endblock %}
 
+{% block right-bar %}
+    <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+{% endblock %}
+
 {% block content %}
 
 	{% for calendar in info %}
         <div class="calendar-container">
             <a href="{% url 'view_calendar' calendar.id %}">{{ calendar.name }}</a>
-            <p>|</p>
-            <a href="{% url 'edit_calendar' calendar.id %}">Editar</a>
             <p>|</p>
             <a href="{% url 'delete_calendar' calendar.id %}">Eliminar</a>
         </div>

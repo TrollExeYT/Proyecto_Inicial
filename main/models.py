@@ -5,6 +5,7 @@ from django.db import models
 class Event(models.Model):
     name = models.CharField(max_length=30)
     photo_path = models.CharField(max_length=150)
+    visible = models.BooleanField(default=True)
 
     REQUIRED_FIELDS = ['name', 'photo_path']
 
@@ -63,4 +64,4 @@ class EventConnector(models.Model):
         return [self.day, self.group, self.division]
 
     def __str__(self):
-        return f"{self.DAYS[self.day][1]} - {self.GROUPS[self.group][1]} - {self.event.name} - Confirmado: {self.confirmed}"
+        return self.event.name

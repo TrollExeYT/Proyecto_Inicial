@@ -1,4 +1,3 @@
-from PIL.features import version_feature
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -109,9 +108,9 @@ def view_calendar(request, calendar_id):
         for group in range(len(EventConnector.GROUPS)):
             for division in range(len(EventConnector.DIVISIONS)):
                 if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
-                    data.append(EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event.name)
+                    data.append(EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event)
                 else:
-                    data.append("Vacio")
+                    data.append(Event.objects.get(name='Default'))
 
         info[day] = data
 
@@ -142,20 +141,20 @@ def edit_calendar(request, calendar_id):
                 if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=False).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=False).event.name,
+                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=False).event,
                             [day, group, division]
                         ]
                     )
                 elif EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event.name,
+                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event,
                             [day, group, division]
                         ]
                     )
                 else:
                     data.append(
-                        ["Vacio", [day, group, division]]
+                        [Event.objects.get(name='Default'), [day, group, division]]
                     )
 
         info[day] = data
@@ -163,7 +162,7 @@ def edit_calendar(request, calendar_id):
     context = {
         'form': AddEventForm,
         'info': calendar,
-        'events': Event.objects.all().order_by('name'),
+        'events': Event.objects.filter(visible=True).order_by('name'),
         'monday': info[0],
         'tuesday': info[1],
         'wednesday': info[2],

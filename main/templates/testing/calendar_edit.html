@@ -3,69 +3,82 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/testing_calendar_edit.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testing_calendar_elements.css' %}">
     <script src="{% static 'js/testing_edit_calendar.js' %}"></script>
 {% endblock %}
 
 {% block left-bar %}
-	<p><a href="{% url 'select_calendar' %}">Volver al inicio</a></p>
-    {{ message }}
+    <p>{{ info }}</p>
 {% endblock %}
 
 {% block right-bar %}
     <p><a href="{% url 'clean_calendar' info.id %}">Limpiar Calendario</a></p>
 	<p><a href="{% url 'undo_events' info.id %}">Deshacer cambios</a></p>
     <p><a href="{% url 'confirm_events' info.id %}">Confirmar</a></p>
+    <p><a href="{% url 'view_calendar' info.id %}">Volver</a></p>
 {% endblock %}
 
 {% block content %}
     <div class="main-calendar-container centered">
-        <div class="calendar-container">
-            <div class="day-container">
-                <p class="day-title">Lunes</p>
+        <div class="calendar-main-container">
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Lunes</p>
                 {% for event in monday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
-            <div class="day-container">
-                <p class="day-title">Martes</p>
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Martes</p>
                 {% for event in tuesday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
-            <div class="day-container">
-                <p class="day-title">Miercoles</p>
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Miercoles</p>
                 {% for event in wednesday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
-            <div class="day-container">
-                <p class="day-title">Jueves</p>
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Jueves</p>
                 {% for event in thursday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
-            <div class="day-container">
-                <p class="day-title">Viernes</p>
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Viernes</p>
                 {% for event in friday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
-            <div class="day-container">
-                <p class="day-title">Sabado y Domingo</p>
+            <div class="calendar-day-block">
+                <p class="calendar-day-title">Sabado y Domingo</p>
                 {% for event in saturday_and_sunday %}
-                    <p><a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">{{ event.0 }}</a></p>
-                {% empty %}
-                    <p>ta vacio lol</p>
+                    <p class="calendar-block">
+                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </a>
+                    </p>
                 {% endfor %}
             </div>
         </div>
@@ -74,7 +87,11 @@
         <p class="event-element">Eventos</p>
         <ul>
             {% for event in events %}
-                <li class="event-element"><a href="javascript:SetEvent({{ event.id }})">{{ event.name }}</a></li>
+                <li class="event-element">
+                    <a href="javascript:SetEvent({{ event.id }})">
+                        <img src="{% static event.photo_path %}" alt="{{ event.name }}" height="32px" width="32px">
+                    </a>
+                </li>
             {% empty %}
                 <p>No hay eventos XD</p>
             {% endfor %}

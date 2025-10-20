@@ -1,0 +1,27 @@
+.calendar-main-container{
+    display: flex;
+}
+
+.calendar-day-block{
+    display: flex;
+    flex-direction: column;
+    width: 128px;
+    text-align: center;
+}
+
+.calendar-day-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 4px;
+    text-wrap: wrap;
+    height: 32px;
+}
+
+.calendar-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 100%;
+}

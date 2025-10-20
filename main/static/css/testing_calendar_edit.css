@@ -5,10 +5,11 @@ main {
 .centered{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center
 }
 
 .main-calendar-container{
+    justify-content: center;
     height: 100%;
     width: 75%;
 }
@@ -30,13 +31,4 @@ main {
 
 .calendar-container a{
     padding: 0 8px;
-}
-
-.day-container {
-    padding: 16px;
-    text-align: center;
-}
-
-.day-title{
-    padding: 4px 0;
 }
