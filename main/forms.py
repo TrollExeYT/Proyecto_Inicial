@@ -12,7 +12,6 @@ class CalendarForm(forms.ModelForm):
         }
 
 class AddEventForm(forms.ModelForm):
-    """pass
     class Meta:
         model = EventConnector
         fields = ['day', 'group', 'division', 'event']
@@ -21,4 +20,4 @@ class AddEventForm(forms.ModelForm):
             'group': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.GROUPS), 'min': 0}),
             'division': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.DIVISIONS), 'min': 0}),
             'event': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.objects.all()), 'min': 0}),
-        }"""
+        }
