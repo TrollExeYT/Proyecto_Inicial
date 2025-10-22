@@ -23,10 +23,12 @@ python manage.py startapp myapp # Crear una app dentro del proyecto
 
 python manage.py runserver # Iniciar servidor del proyecto, con ctrl+c en el cmd se cierra el servidor
 
-# Migrar base de datos, se debe hacer en el siguiente orden
-1.- python manage.py makemigrations
+python manage.py createsuperuser # Sirve para crear un usuario con permisos de administrador
 
-2.- python manage.py migrate
+# Migrar base de datos, se debe hacer en el siguiente orden
+1. python manage.py makemigrations
+
+2. python manage.py migrate
 
 
 Git:
