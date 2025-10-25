@@ -10,11 +10,22 @@ eventsBlocks.forEach((block) => block.addEventListener('dragstart', e => {
     SetEvent(block.dataset.id);
 }))
 
+eventsBlocks.forEach((block) => block.addEventListener('click', e => {
+    SetEvent(block.dataset.id);
+}))
+
 calendarBlocks.forEach((block) => block.addEventListener('dragover', e => {
     e.preventDefault();
 }))
 
 calendarBlocks.forEach((block) => block.addEventListener('drop', e => {
+    let day = block.dataset.day;
+    let group = block.dataset.group;
+    let division = block.dataset.division;
+    SetLocation(day, group, division);
+}))
+
+calendarBlocks.forEach((block) => block.addEventListener('click', e => {
     let day = block.dataset.day;
     let group = block.dataset.group;
     let division = block.dataset.division;
