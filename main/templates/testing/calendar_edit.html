@@ -4,7 +4,6 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/testing_calendar_edit.css' %}">
     <link rel="stylesheet" href="{% static 'css/testing_calendar_elements.css' %}">
-    <script src="{% static 'js/testing_edit_calendar.js' %}"></script>
 {% endblock %}
 
 {% block left-bar %}
@@ -24,60 +23,48 @@
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Lunes</p>
                 {% for event in monday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Martes</p>
                 {% for event in tuesday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Miercoles</p>
                 {% for event in wednesday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Jueves</p>
                 {% for event in thursday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Viernes</p>
                 {% for event in friday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
             <div class="calendar-day-block">
                 <p class="calendar-day-title">Sabado y Domingo</p>
                 {% for event in saturday_and_sunday %}
-                    <p class="calendar-block">
-                        <a href="javascript:SetLocation({{ event.1.0 }}, {{ event.1.1 }}, {{ event.1.2 }})">
-                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                        </a>
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
                     </p>
                 {% endfor %}
             </div>
@@ -87,10 +74,8 @@
         <p class="event-element">Eventos</p>
         <ul>
             {% for event in events %}
-                <li class="event-element">
-                    <a href="javascript:SetEvent({{ event.id }})">
-                        <img src="{% static event.photo_path %}" alt="{{ event.name }}" height="32px" width="32px">
-                    </a>
+                <li class="event-element event-block" data-id="{{ event.id}}">
+                    <img src="{% static event.photo_path %}" alt="{{ event.name }}" height="32px" width="32px">
                 </li>
             {% empty %}
                 <p>No hay eventos XD</p>
@@ -104,4 +89,5 @@
         {% csrf_token %}
         {{ form }}
     </form>
+    <script src="{% static 'js/testing_edit_calendar.js' %}"></script>
 {% endblock %}

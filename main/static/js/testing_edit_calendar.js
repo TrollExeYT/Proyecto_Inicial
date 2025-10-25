@@ -1,4 +1,25 @@
+// Verifica si ya se selecciono un evento
 let eventSelected = false
+
+// Bloques de Eventos
+const eventsBlocks = document.querySelectorAll('.event-block');
+// Bloques en la agenda
+const calendarBlocks = document.querySelectorAll('.calendar-block');
+
+eventsBlocks.forEach((block) => block.addEventListener('dragstart', e => {
+    SetEvent(block.dataset.id);
+}))
+
+calendarBlocks.forEach((block) => block.addEventListener('dragover', e => {
+    e.preventDefault();
+}))
+
+calendarBlocks.forEach((block) => block.addEventListener('drop', e => {
+    let day = block.dataset.day;
+    let group = block.dataset.group;
+    let division = block.dataset.division;
+    SetLocation(day, group, division);
+}))
 
 function SetEvent(id_event){
     // Para seleccionar un evento
