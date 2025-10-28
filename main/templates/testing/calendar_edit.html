@@ -7,67 +7,29 @@
 {% endblock %}
 
 {% block left-bar %}
-    <p>{{ info }}</p>
+    <p>{{ calendar_info }}</p>
 {% endblock %}
 
 {% block right-bar %}
-    <p><a href="{% url 'clean_calendar' info.id %}">Limpiar Calendario</a></p>
-	<p><a href="{% url 'undo_events' info.id %}">Deshacer cambios</a></p>
-    <p><a href="{% url 'confirm_events' info.id %}">Confirmar</a></p>
-    <p><a href="{% url 'view_calendar' info.id %}">Volver</a></p>
+    <p><a href="{% url 'clean_calendar' calendar_info.id %}">Limpiar Calendario</a></p>
+	<p><a href="{% url 'undo_events' calendar_info.id %}">Deshacer cambios</a></p>
+    <p><a href="{% url 'confirm_events' calendar_info.id %}">Confirmar</a></p>
+    <p><a href="{% url 'view_calendar' calendar_info.id %}">Volver</a></p>
 {% endblock %}
 
 {% block content %}
     <div class="main-calendar-container centered">
         <div class="calendar-main-container">
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Lunes</p>
-                {% for event in monday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Martes</p>
-                {% for event in tuesday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Miercoles</p>
-                {% for event in wednesday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Jueves</p>
-                {% for event in thursday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Viernes</p>
-                {% for event in friday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
-            <div class="calendar-day-block">
-                <p class="calendar-day-title">Sabado y Domingo</p>
-                {% for event in saturday_and_sunday %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
-                        <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
-                    </p>
-                {% endfor %}
-            </div>
+            {% for day in days_info %}
+                <div class="calendar-day-block">
+                    <p class="calendar-day-title">{{ day.0 }}</p>
+                    {% for event in day.1 %}
+                        <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                            <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+                        </p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="events-container centered">
@@ -83,7 +45,7 @@
 {% endblock %}
 
 {% block hidden %}
-    <form action="{% url 'add_event' info.id %}" method="POST" id="form-event_connector">
+    <form action="{% url 'add_event' calendar_info.id %}" method="POST" id="form-event_connector">
         {% csrf_token %}
         {{ form }}
     </form>

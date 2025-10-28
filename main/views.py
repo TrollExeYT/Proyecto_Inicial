@@ -114,14 +114,16 @@ def view_calendar(request, calendar_id):
 
         info[day] = data
 
+    days_info = []
+    list_day = EventConnector().get_days_list()
+
+    for i in range(len(list_day)):
+        days_info.append([list_day[i], info[i]])
+
+
     context = {
-        'info': calendar,
-        'monday': info[0],
-        'tuesday': info[1],
-        'wednesday': info[2],
-        'thursday': info[3],
-        'friday': info[4],
-        'saturday_and_sunday': info[5],
+        'calendar_info': calendar,
+        'days_info': days_info,
     }
 
     return render(request, 'testing/calendar.html', context)
@@ -159,16 +161,16 @@ def edit_calendar(request, calendar_id):
 
         info[day] = data
 
+    days_info = []
+    list_day = EventConnector().get_days_list()
+
+    for i in range(len(list_day)):
+        days_info.append([list_day[i], info[i]])
+
     context = {
-        'form': AddEventForm,
-        'info': calendar,
-        'events': Event.objects.filter(visible=True).order_by('name'),
-        'monday': info[0],
-        'tuesday': info[1],
-        'wednesday': info[2],
-        'thursday': info[3],
-        'friday': info[4],
-        'saturday_and_sunday': info[5],
+        'calendar_info': calendar,
+        'days_info': days_info,
+        'events': Event.objects.filter(visible=True),
     }
     return render(request, 'testing/calendar_edit.html', context)
 

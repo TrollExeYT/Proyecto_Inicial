@@ -36,7 +36,8 @@ class EventConnector(models.Model):
         (2, 'Miercoles'),
         (3, 'Jueves'),
         (4, 'Viernes'),
-        (5, 'Sab y Dom'),
+        (5, 'Sabado'),
+        (6, 'Domingo'),
     )
 
     GROUPS = (
@@ -60,8 +61,11 @@ class EventConnector(models.Model):
 
     REQUIRED_FIELDS = ['day', 'group', 'division', 'calendar', 'event']
 
-    def position(self):
-        return [self.day, self.group, self.division]
+    def get_days_list(self):
+        data = []
+        for day in self.DAYS:
+            data.append(day[1])
+        return data
 
     def __str__(self):
         return self.event.name
