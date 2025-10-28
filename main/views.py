@@ -172,6 +172,7 @@ def edit_calendar(request, calendar_id):
         'calendar_info': calendar,
         'days_info': days_info,
         'events': Event.objects.filter(visible=True),
+        'form': AddEventForm(),
     }
     return render(request, 'testing/calendar_edit.html', context)
 
@@ -219,7 +220,6 @@ def undo_events(request, calendar_id):
     return redirect('edit_calendar', calendar_id=calendar_id)
 
 @login_required(login_url='login')
-# Es solo una idea y si encontramos una manera mas optimizada usaremos esa - B
 def add_event(request, calendar_id):
     if Calendar.objects.get(id=calendar_id).user != request.user:
         return redirect('select_calendar')

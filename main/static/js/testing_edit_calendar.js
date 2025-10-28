@@ -14,7 +14,7 @@ eventsBlocks.forEach((block) => block.addEventListener('click', () => {
     SetEvent(block.dataset.id);
 }))
 /*
-// SE INTENTO AÑADIR DRAG AND DROP PARA MOVILES (No se pudo)
+// SE INTENTO AÑADIR DRAG AND DROP PARA MÓVILES (No se pudo)
 eventsBlocks.forEach((block) => block.addEventListener('touchstart', e => {
     block.classList.add('in-movement');
 
@@ -61,11 +61,11 @@ function SetEvent(id_event){
 }
 
 function SetLocation(day, group, division){
-    // Selecionar la posicion en la que se va a enviar el evento
+    // Seleccionar la posición en la que se va a enviar el evento
     document.getElementById('id_day').value = day;
     document.getElementById('id_group').value = group;
     document.getElementById('id_division').value = division;
-    // Tambien se va a enviar el formulario
+    // También se va a enviar el formulario
     SendForm();
 }
 
