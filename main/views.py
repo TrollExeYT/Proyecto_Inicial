@@ -107,8 +107,8 @@ def view_calendar(request, calendar_id):
         data = []
         for group in range(len(EventConnector.GROUPS)):
             for division in range(len(EventConnector.DIVISIONS)):
-                if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
-                    data.append(EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event)
+                if EventConnector.objects.filter(calendar=calendar ,day=day, group=group, division=division, confirmed=True).exists():
+                    data.append(EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event)
                 else:
                     data.append(Event.objects.get(name='Default'))
 
@@ -138,17 +138,17 @@ def edit_calendar(request, calendar_id):
         data = []
         for group in range(len(EventConnector.GROUPS)):
             for division in range(len(EventConnector.DIVISIONS)):
-                if EventConnector.objects.filter(day=day, group=group, division=division, confirmed=False).exists():
+                if EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=False).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=False).event,
+                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=False).event,
                             [day, group, division]
                         ]
                     )
-                elif EventConnector.objects.filter(day=day, group=group, division=division, confirmed=True).exists():
+                elif EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=True).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(day=day, group=group, division=division, confirmed=True).event,
+                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event,
                             [day, group, division]
                         ]
                     )
