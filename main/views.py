@@ -67,8 +67,9 @@ def create_calendar(request):
             calendar = Calendar.objects.create(
                 user=request.user,
                 name=request.POST['name'],
-                photo=request.FILES['photo']
             )
+            if len(request.FILES) > 0:
+                calendar.photo = request.FILES['photo']
             calendar.save()
             return redirect('view_calendar', calendar_id=calendar.id)
         except ValueError:
