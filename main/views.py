@@ -127,7 +127,7 @@ def view_calendar(request, calendar_id):
         'days_info': days_info,
     }
 
-    return render(request, 'testing/calendar.html', context)
+    return render(request, 'testing/calendar_view.html', context)
 
 @login_required(login_url='login')
 def edit_calendar(request, calendar_id):
