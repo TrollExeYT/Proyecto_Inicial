@@ -5,7 +5,12 @@
     padding: 16px;
 }
 
-.calendar-day-block{
+.calendar-day-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-day-column{
     display: flex;
     flex-direction: column;
     width: 128px;
@@ -27,4 +32,16 @@
     justify-content: center;
     height: 48px;
     width: 100%;
+}
+
+.days-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.events-container{
+    display: flex;
+    flex-direction: row;
 }

@@ -1,0 +1,12 @@
+{% load static %}
+{# Recomendación revisar las views para saber que datos tienen #}
+{% for day in days_info %}
+    <div class="calendar-day-column">
+        <p class="calendar-day-title">{{ day.0 }}</p>
+        {% for event in day.1 %}
+            <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+                <img src="{% static event.0.photo_path %}" alt="{{ event.0 }}" height="32px" width="32px">
+            </p>
+        {% endfor %}
+    </div>
+{% endfor %}

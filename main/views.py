@@ -71,7 +71,7 @@ def create_calendar(request):
             if len(request.FILES) > 0:
                 calendar.photo = request.FILES['photo']
             calendar.save()
-            return redirect('view_calendar', calendar_id=calendar.id)
+            return redirect('view_calendar', calendar_id=calendar.id, type_view=0)
         except ValueError:
             pass
 
@@ -97,7 +97,7 @@ def clean_calendar(request, calendar_id):
     return redirect('edit_calendar', calendar_id=calendar.id)
 
 @login_required(login_url='login')
-def view_calendar(request, calendar_id):
+def view_calendar(request, calendar_id, type_view):
     calendar = Calendar.objects.get(id=calendar_id)
     if calendar.user != request.user:
         return redirect('select_calendar')
@@ -119,13 +119,24 @@ def view_calendar(request, calendar_id):
     list_day = EventConnector().get_days_list()
 
     for i in range(len(list_day)):
-        days_info.append([list_day[i], info[i]])
-
+        days_info.append([list_day[i], info[i], i + 1])
 
     context = {
         'calendar_info': calendar,
         'days_info': days_info,
+        'type_view': '',
+        'current_day': '',
     }
+
+    if type_view != 0:
+        type_view -= 1
+        if type_view < len(days_info):
+            context['type_view'] = './components/day_calendar.html'
+            context['current_day'] = list_day[type_view]
+        else:
+            return redirect('view_calendar', calendar_id=calendar.id, type_view=0)
+    else:
+        context['type_view'] = './components/week_calendar.html'
 
     return render(request, 'testing/calendar_view.html', context)
 
@@ -145,19 +156,19 @@ def edit_calendar(request, calendar_id):
                     data.append(
                         [
                             EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=False).event,
-                            [day, group, division]
+                            [day, group, division, day + 1]
                         ]
                     )
                 elif EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=True).exists():
                     data.append(
                         [
                             EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event,
-                            [day, group, division]
+                            [day, group, division, day + 1]
                         ]
                     )
                 else:
                     data.append(
-                        [Event.objects.get(name='Default'), [day, group, division]]
+                        [Event.objects.get(name='Default'), [day, group, division, day + 1]]
                     )
 
         info[day] = data
@@ -202,7 +213,7 @@ def confirm_events(request, calendar_id):
         event.confirmed = True
         event.save()
 
-    return redirect('view_calendar', calendar_id=calendar_id)
+    return redirect('view_calendar', calendar_id=calendar_id, type_view=0)
 
 @login_required(login_url='login')
 def undo_events(request, calendar_id):
