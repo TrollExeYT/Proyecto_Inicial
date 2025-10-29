@@ -41,4 +41,4 @@ git commit -m "MENSAJE IMPORTANTE" # Registrar con un mensaje
 
 git push # Meter pal repositorio
 
-git checkout * # USAR SOLO EN CASO DE EMERGENCIA, restaura todos los archivos hasta el ultimo commit
+git restore * # USAR SOLO EN CASO DE EMERGENCIA, restaura todos los archivos hasta el ultimo commit
