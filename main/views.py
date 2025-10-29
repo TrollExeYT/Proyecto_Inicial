@@ -15,6 +15,7 @@ def user_login(request):
         'form': AuthenticationForm(),
         'message': '',
     }
+
     if request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is None:
@@ -94,7 +95,7 @@ def clean_calendar(request, calendar_id):
 
     events.delete()
 
-    return redirect('edit_calendar', calendar_id=calendar.id)
+    return redirect('edit_calendar', calendar_id=calendar.id, type_view=0)
 
 @login_required(login_url='login')
 def view_calendar(request, calendar_id, type_view):
@@ -124,24 +125,25 @@ def view_calendar(request, calendar_id, type_view):
     context = {
         'calendar_info': calendar,
         'days_info': days_info,
-        'type_view': '',
+        'type_view': type_view,
+        'calendar_comp': '',
         'current_day': '',
     }
 
     if type_view != 0:
         type_view -= 1
         if type_view < len(days_info):
-            context['type_view'] = './components/day_calendar.html'
+            context['calendar_comp'] = './components/day_calendar.html'
             context['current_day'] = list_day[type_view]
         else:
             return redirect('view_calendar', calendar_id=calendar.id, type_view=0)
     else:
-        context['type_view'] = './components/week_calendar.html'
+        context['calendar_comp'] = './components/week_calendar.html'
 
     return render(request, 'testing/calendar_view.html', context)
 
 @login_required(login_url='login')
-def edit_calendar(request, calendar_id):
+def edit_calendar(request, calendar_id, type_view):
     calendar = Calendar.objects.get(id=calendar_id)
     if calendar.user != request.user:
         return redirect('select_calendar')
@@ -156,19 +158,19 @@ def edit_calendar(request, calendar_id):
                     data.append(
                         [
                             EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=False).event,
-                            [day, group, division, day + 1]
+                            [day, group, division]
                         ]
                     )
                 elif EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=True).exists():
                     data.append(
                         [
                             EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event,
-                            [day, group, division, day + 1]
+                            [day, group, division]
                         ]
                     )
                 else:
                     data.append(
-                        [Event.objects.get(name='Default'), [day, group, division, day + 1]]
+                        [Event.objects.get(name='Default'), [day, group, division]]
                     )
 
         info[day] = data
@@ -177,14 +179,29 @@ def edit_calendar(request, calendar_id):
     list_day = EventConnector().get_days_list()
 
     for i in range(len(list_day)):
-        days_info.append([list_day[i], info[i]])
+        days_info.append([list_day[i], info[i], i + 1])
 
     context = {
         'calendar_info': calendar,
         'days_info': days_info,
         'events': Event.objects.filter(visible=True),
+        'type_view': type_view,
         'form': AddEventForm(),
+        'calendar_comp': '',
+        'current_day': '',
     }
+
+    if type_view != 0:
+        type_view -= 1
+        if type_view < len(days_info):
+            context['calendar_comp'] = './components/day_edit.html'
+            context['current_day'] = list_day[type_view]
+        else:
+            return redirect('edit_calendar', calendar_id=calendar.id, type_view=0)
+    else:
+        context['calendar_comp'] = './components/week_edit.html'
+
+
     return render(request, 'testing/calendar_edit.html', context)
 
 @login_required(login_url='login')
@@ -228,10 +245,10 @@ def undo_events(request, calendar_id):
     for event in data:
         event.delete()
 
-    return redirect('edit_calendar', calendar_id=calendar_id)
+    return redirect('edit_calendar', calendar_id=calendar_id, type_view=0)
 
 @login_required(login_url='login')
-def add_event(request, calendar_id):
+def add_event(request, calendar_id, type_view):
     if Calendar.objects.get(id=calendar_id).user != request.user:
         return redirect('select_calendar')
 
@@ -259,4 +276,4 @@ def add_event(request, calendar_id):
     except ValueError:
         pass
 
-    return redirect('edit_calendar', calendar_id=calendar_id)
+    return redirect('edit_calendar', calendar_id=calendar_id, type_view=type_view)

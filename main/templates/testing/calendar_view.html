@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block right-bar %}
-    <p><a href="{% url 'edit_calendar' calendar_info.id %}">Editar</a></p>
+    <p><a href="{% url 'edit_calendar' calendar_info.id type_view %}">Editar</a></p>
 	<p><a href="{% url 'select_calendar' %}">Volver al Inicio</a></p>
 {% endblock %}
 
 {% block content %}
-	{% include type_view %}
+	{% include calendar_comp %}
 {% endblock %}

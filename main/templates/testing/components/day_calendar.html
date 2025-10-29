@@ -1,6 +1,7 @@
 {% load static %}
-
+{#  #}
 <div class="calendar-main-container calendar-day-container centered">
+    <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title">Vista completa</a>
     <div class="days-container">
         {% for day in days_info %}
         	{% if day.0 == current_day %}
@@ -9,7 +10,6 @@
         		<a href="{% url 'view_calendar' calendar_info.id day.2 %}" class="calendar-day-title">{{ day.0 }}</a>
         	{% endif %}
         {% endfor %}
-        <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title">Vista completa</a>
     </div>
     <div class="events-container">
         {% for day in days_info %}

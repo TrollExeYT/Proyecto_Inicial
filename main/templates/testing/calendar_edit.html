@@ -19,9 +19,7 @@
 
 {% block content %}
     <div class="main-calendar-container centered">
-        <div class="calendar-main-container">
-            {% include './components/week_edit.html' %}
-        </div>
+        {% include calendar_comp %}
     </div>
     <div class="events-container centered">
         <p class="event-element">Eventos</p>
@@ -36,7 +34,7 @@
 {% endblock %}
 
 {% block hidden %}
-    <form action="{% url 'add_event' calendar_info.id %}" method="POST" id="form-event_connector">
+    <form action="{% url 'add_event' calendar_info.id type_view %}" method="POST" id="form-event_connector">
         {% csrf_token %}
         {{ form }}
     </form>
