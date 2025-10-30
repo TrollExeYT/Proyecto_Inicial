@@ -20,7 +20,7 @@ class Calendar(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # Añadir alguna imagen en ese el path de DEFAULT antes de ejecutar - B
-    photo = models.ImageField(upload_to=calendar_photo_path, default='server/icon.png', blank=True, null=True)
+    photo = models.ImageField(upload_to=calendar_photo_path, default='default.png', blank=True, null=True)
 
     REQUIRED_FIELDS = ['user', 'name']
 
