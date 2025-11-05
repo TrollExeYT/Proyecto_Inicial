@@ -4,8 +4,8 @@ Equipo 9 - Abbey Road:
 - Joaquin
 - Sofia
 - Emilio
-- Juan Pablo
 - Benjamin
+- Juan Pablo 🪦 🕊️
 - Andres 🪦 🕊️
 
 En caso de necesitar algún comando usar "help.txt" o consultar en el grupo.

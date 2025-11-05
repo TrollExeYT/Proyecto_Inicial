@@ -11,7 +11,7 @@ class CalendarForm(forms.ModelForm):
             'photo': 'Foto',
         }
 
-class AddEventForm(forms.ModelForm):
+class AddEventConnectorForm(forms.ModelForm):
     class Meta:
         model = EventConnector
         fields = ['day', 'group', 'division', 'event']

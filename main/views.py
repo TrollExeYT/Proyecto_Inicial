@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .forms import CalendarForm, AddEventForm
+from .forms import CalendarForm, AddEventConnectorForm
 from .models import *
 
 
@@ -186,7 +186,7 @@ def edit_calendar(request, calendar_id, type_view):
         'days_info': days_info,
         'events': Event.objects.filter(visible=True),
         'type_view': type_view,
-        'form': AddEventForm(),
+        'form': AddEventConnectorForm(),
         'calendar_comp': '',
         'current_day': '',
     }
