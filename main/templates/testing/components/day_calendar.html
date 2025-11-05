@@ -16,7 +16,7 @@
         	{% if day.0 == current_day %}
         		{% for event in day.1 %}
                     <p>
-                        <img src="{% static event.photo_path %}" alt="{{ event }}" height="128px" width="128px">
+                        <img src="{{ event.photo.url }}" alt="{{ event }}" height="128px" width="128px">
                     </p>
         		{% endfor %}
         	{% endif %}

@@ -16,8 +16,8 @@ class AddEventConnectorForm(forms.ModelForm):
         model = EventConnector
         fields = ['day', 'group', 'division', 'event']
         widgets = {
-            'day': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.DAYS), 'min': 0}),
-            'group': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.GROUPS), 'min': 0}),
-            'division': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.DIVISIONS), 'min': 0}),
-            'event': forms.DateInput(attrs={'type': 'number', 'max': len(EventConnector.objects.all()), 'min': 0}),
+            'day': forms.DateInput(attrs={'type': 'number', 'min': 0}),
+            'group': forms.DateInput(attrs={'type': 'number', 'min': 0}),
+            'division': forms.DateInput(attrs={'type': 'number', 'min': 0}),
+            'event': forms.DateInput(attrs={'type': 'number', 'min': 0}),
         }

@@ -1,10 +1,14 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+def event_photo_path(instance, filename):
+    return f"event_photos/{filename}"
+
 # Modelo de los eventos predeterminados
 class Event(models.Model):
     name = models.CharField(max_length=30)
-    photo_path = models.CharField(max_length=150)
+    description = models.TextField(default="", blank=True)
+    photo = models.ImageField(upload_to=event_photo_path, default='default.png', null=False, blank=False)
     visible = models.BooleanField(default=True)
 
     REQUIRED_FIELDS = ['name', 'photo_path']
@@ -13,7 +17,7 @@ class Event(models.Model):
         return self.name
 
 def calendar_photo_path(instance, filename):
-    return f"user_{instance.user.id}/{filename}"
+    return f"users/{instance.user.id}/{filename}"
 
 # Calendarios
 class Calendar(models.Model):
