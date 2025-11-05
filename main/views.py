@@ -63,20 +63,27 @@ def select_calendar(request):
 
 @login_required(login_url='login')
 def create_calendar(request):
+    context = {
+        'form': CalendarForm(),
+        'message': '',
+    }
     if request.method == "POST":
         try:
-            calendar = Calendar.objects.create(
-                user=request.user,
-                name=request.POST['name'],
-            )
-            if len(request.FILES) > 0:
-                calendar.photo = request.FILES['photo']
-            calendar.save()
-            return redirect('view_calendar', calendar_id=calendar.id, type_view=0)
+            if Calendar.objects.get(name=request.POST['name'], user=request.user) is None:
+                calendar = Calendar.objects.create(
+                    user=request.user,
+                    name=request.POST['name'],
+                )
+                if len(request.FILES) > 0:
+                    calendar.photo = request.FILES['photo']
+                calendar.save()
+                return redirect('view_calendar', calendar_id=calendar.id, type_view=0)
+            else:
+                context['message'] = 'Ya tienes un calendario con este nombre.'
         except ValueError:
             pass
 
-    return render(request, 'testing/create_calendar.html', {'form': CalendarForm()})
+    return render(request, 'testing/create_calendar.html', context)
 @login_required(login_url='login')
 def delete_calendar(request, calendar_id):
     calendar = Calendar.objects.get(id=calendar_id)
