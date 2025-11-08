@@ -11,10 +11,21 @@
 {% endblock %}
 
 {% block right-bar %}
-    <p><a href="{% url 'clean_calendar' calendar_info.id %}">Limpiar Calendario</a></p>
-	<p><a href="{% url 'undo_events' calendar_info.id %}">Deshacer cambios</a></p>
-    <p><a href="{% url 'confirm_events' calendar_info.id %}">Confirmar</a></p>
-    <p><a href="{% url 'view_calendar' calendar_info.id 0 %}">Volver</a></p>
+    <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'clean_calendar' calendar_info.id %}">Limpiar Calendario</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'confirm_events' calendar_info.id %}">Confirmar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'view_calendar' calendar_info.id 0 %}">Volver</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'undo_events' calendar_info.id %}">Deshacer cambio</a>
+  </li>
+</ul>
+
 {% endblock %}
 
 {% block content %}
@@ -26,7 +37,7 @@
         <ul>
             {% for event in events %}
                 <li class="event-element event-block" data-id="{{ event.id}}" draggable="true">
-                    <img src="{{ event.photo.url }}" alt="{{ event.name }}" height="32px" width="32px">
+                    <img src="{{ event.photo.url }}" alt="{{ event.name }}" height="60px" width="60px">
                 </li>
             {% endfor %}
         </ul>
