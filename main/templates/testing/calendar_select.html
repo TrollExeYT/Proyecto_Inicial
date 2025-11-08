@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/testing.css' %}">
     <link rel="stylesheet" href="{% static 'css/testing_select_calendar.css' %}">
 {% endblock %}
 
 {% block left-bar %}
-    <p><a href="{% url 'create_calendar' %}">Crear Calendario</a></p>
+    <button type="button" href="{% url 'create_calendar' %}"class="btn btn-secondary btn-lg">Crear Agenda</button>
 {% endblock %}
 
 {% block right-bar %}
-    <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+    <button type="button" href="{% url 'logout' %}"class="btn btn-secondary btn-lg">Cerrar sesión</button>
 {% endblock %}
 
 {% block content %}
