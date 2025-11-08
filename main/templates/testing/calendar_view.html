@@ -1,20 +1,8 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block head %}
-    <link rel="stylesheet" href="{% static 'css/testing.css' %}">
-    <link rel="stylesheet" href="{% static 'css/testing_calendar_elements.css' %}">
-{% endblock %}
-
-{% block left-bar %}
-	<p>{{ calendar_info }}</p>
-{% endblock %}
-
-{% block right-bar %}
-    <p><a href="{% url 'edit_calendar' calendar_info.id type_view %}">Editar</a></p>
-	<p><a href="{% url 'select_calendar' %}">Volver al Inicio</a></p>
-{% endblock %}
-
-{% block content %}
-	{% include calendar_comp %}
-{% endblock %}
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'edit_calendar' calendar_info.id type_view %}">Editar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'select_calendar' %}">Volver al Inicio</a>
+  </li>
+</ul>
