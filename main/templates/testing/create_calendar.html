@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block left-bar %}
-	<p><a href="{% url 'select_calendar' %}">Volver al inicio</a></p>
+    <div class="btn-group">
+        <a href="{% url 'select_calendar' %}" class="btn btn-primary active" aria-current="page">Volver al inicio</a>
+    </div>
 {% endblock %}
 
 {% block content %}
