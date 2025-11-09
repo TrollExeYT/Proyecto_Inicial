@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+# Funcion para guardar la imagen
 def event_photo_path(instance, filename):
     return f"event_photos/{filename}"
 
@@ -19,7 +20,7 @@ class Event(models.Model):
 def calendar_photo_path(instance, filename):
     return f"users/{instance.user.id}/{filename}"
 
-# Calendarios
+# Calendarios bacanes
 class Calendar(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -32,7 +33,7 @@ class Calendar(models.Model):
         return f"{self.name} de {self.user.username}"
 
 # Conectores y divisores de eventos
-# Crear una view especifica para
+# Crear una view específica para
 class EventConnector(models.Model):
     DAYS = (
         (0, 'Lunes'),
