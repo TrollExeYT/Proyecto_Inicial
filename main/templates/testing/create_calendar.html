@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block left-bar %}
-    <div class="btn-group">
-        <a href="{% url 'select_calendar' %}" class="btn btn-primary active" aria-current="page">Volver al inicio</a>
-    </div>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'select_calendar' %}">Volver al Inicio</a>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +18,7 @@
     <form action="{% url 'create_calendar' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Crear</button>
+        <button type="button" class="btn btn-info">Crear</button>
     </form>
 
 {% endblock %}
