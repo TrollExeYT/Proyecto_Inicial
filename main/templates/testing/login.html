@@ -23,7 +23,8 @@
         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
     </form>
     {{ message }}
-    <a href="{% url 'signup' %}"class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Registrarse</a>
+    <button type="button" href="{% url 'signup' %}" class="btn btn-secondary btn-sm">Registrarse</button>
+    
 {% endblock %}
 ----------------------------------------------------------------------------------------------------
 <form>
