@@ -50,7 +50,7 @@ def user_signup(request):
                 user.save()
                 context['message'] = 'Usuario creado correctamente'
             except ValueError:
-                context['message'] = 'Ya existe un usuario con este nombre'
+                context['message'] = 'Ya existe nombre usuario con este nombre'
     return render(request, 'testing/sign_up.html', context)
 
 
