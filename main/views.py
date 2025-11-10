@@ -284,3 +284,7 @@ def add_event(request, calendar_id, type_view):
         pass
 
     return redirect('edit_calendar', calendar_id=calendar_id, type_view=type_view)
+
+
+def testing(request):
+    return render(request, 'testing/test.html')

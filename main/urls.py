@@ -14,4 +14,5 @@ urlpatterns = [
     path('edit_calendar/<int:calendar_id>/clean', clean_calendar, name='clean_calendar'),
     path('edit_calendar/<int:calendar_id>/confirm_events', confirm_events, name='confirm_events'),
     path('edit_calendar/<int:calendar_id>/undo_events', undo_events, name='undo_events'),
+    path('testing', testing, name='testing'),
 ]
