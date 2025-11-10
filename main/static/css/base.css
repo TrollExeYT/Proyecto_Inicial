@@ -11,33 +11,28 @@ body {
 
 main {
     width: 100%;
-    height: calc(100vh - 66px);
+    height: calc(100vh - 64px);
     background-color: #fede54;
 }
 
+.navbar-color {
+    background-color: #feca4a;
+    border-bottom: #f8b351 solid 2px;
+}
 
-.nav-bar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.nav-bar {
     background-color: #feca4a;
     height: 64px;
     border-bottom: #f8b351 solid 2px;
 }
 
-.div-nav-bar{
-    display: flex;
-    flex-direction: row;
-}
-
-.div-nav-bar p{
+.div-nav-bar p {
     padding: 16px;
     display: flex;
     align-items: center;
 }
 
-.nav-bar-logo{
+.nav-bar-logo {
     padding: 8px
 }
 

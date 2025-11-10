@@ -9,8 +9,6 @@
     <div class="form-signin w-100 m-auto">
         <form action="{% url 'login' %}" method="POST" class="card-body">
             <h1 class="h3 mb-3 fw-normal text-center">Iniciar sesión</h1>
-            <p class="form-text text-center">¿Todavía no tienes cuenta? <a href="{% url 'signup' %}" class="link-underline link-underline-opacity-0">Regístrate</a></p>
-
             {% csrf_token %}
             {# Form modificado #}
             <div class="mb-3">
@@ -24,7 +22,8 @@
                 {{ form.password.errors }}
             </div>
             <button type="submit" class="btn btn-primary w-100 py-2">Iniciar sesión</button>
-            <p class="text-center py-3">© 2025 ABEJJAS</p>
+            <p class="form-text text-center mt-3">¿Todavía no tienes cuenta? <a href="{% url 'signup' %}" class="link-underline link-underline-opacity-0">Regístrate</a></p>
+            <p class="text-center">© 2025 ABEJJAS</p>
         </form>
     </div>
 {% endblock %}

@@ -4,18 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>ABEJJAS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 </head>
 <body>
-    <nav class="navbar bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand align-content-center">
-                <img src="{% static 'images/icon.png' %}" alt="Logo"  width="24" height="24" class="d-inline-block align-text-top">
-                Abejjas
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use href="#"></use>
+                </svg>
             </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href="#" class="nav-link px-2 text-secondary">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">Features</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">About</a></li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                       aria-label="Search"></form>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
         </div>
-    </nav>
+    </div>
+</header>
 <h1>usemoslo pa experimentar</h1>
 </body>
 </html>

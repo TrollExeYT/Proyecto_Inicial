@@ -8,23 +8,23 @@
 
 {% block left-bar %}
     <ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'create_calendar' %}">Crear Agenda</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link active mx-3" aria-current="page" href="{% url 'create_calendar' %}">Crear Agenda</a>
+        </li>
     </ul>
 {% endblock %}
 
 {% block right-bar %}
     <ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión</a>
-  </li>
+        <li class="nav-item">
+            <a class="nav-link active mx-3" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión</a>
+        </li>
     </ul>
 {% endblock %}
 
 {% block content %}
 
-	{% for calendar in info %}
+    {% for calendar in info %}
         <div class="view-calendar-container">
             <a href="{% url 'view_calendar' calendar.id 0 %}">
                 <img class="hexagon" src="{{ calendar.photo.url }}" alt="" height="128px" width="128px">
@@ -32,16 +32,17 @@
             <p>{{ calendar.name }}</p>
             <a href="{% url 'delete_calendar' calendar.id %}">Eliminar</a>
         </div>
-	{% empty %}
-<div class="card">
-  <div class="card-header">
-    ABEJJAS
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">¡ Hola Abejita !</h5>
-    <p class="card-text">Para comenzar, crea una agenda en el botón xxx y podrás diseñar tu agenda semanal. Y si ya tienes una, sigue diseñando :) .</p>
-  </div>
-</div>
-	{% endfor %}
+    {% empty %}
+        <div class="card">
+            <div class="card-header">
+                ABEJJAS
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">¡ Hola Abejita !</h5>
+                <p class="card-text">Para comenzar, crea una agenda en el botón xxx y podrás diseñar tu agenda semanal.
+                    Y si ya tienes una, sigue diseñando :) .</p>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}
