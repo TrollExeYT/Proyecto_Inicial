@@ -15,6 +15,12 @@
     background-color: var(--border-color) !important;
 }
 
+.img-border {
+    width: 132px;
+    height: 132px;
+    background-color: var(--border-color) !important;
+}
+
 .view-calendar-container p, .view-calendar-container a {
     padding: 2px;
 }
