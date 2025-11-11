@@ -68,16 +68,16 @@
 }
 
 .morning {
-    background-color: cyan;
-    color: white;
+    background-color: rgb(168, 235, 253);
+    color: rgb(20, 30, 41);
 }
 
 .afternoon {
-    background-color: orange;
-    color: white;
+    background-color: rgb(255, 125, 246);
+    color:rgb(20, 30, 41);
 }
 
 .night {
-    background-color: black;
+    background-color: rgb(44, 34, 150);
     color: white;
 }
