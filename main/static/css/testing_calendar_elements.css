@@ -1,23 +1,23 @@
-.calendar-main-container{
+.calendar-main-container {
     display: flex;
     background-color: #feca4a;
     border: #f8b351 solid 2px;
     padding: 16px;
 }
 
-.calendar-day-container{
+.calendar-day-container {
     display: flex;
     flex-direction: column;
 }
 
-.calendar-day-column{
+.calendar-day-column {
     display: flex;
     flex-direction: column;
     width: 128px;
     text-align: center;
 }
 
-.calendar-day-title{
+.calendar-day-title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,22 +26,22 @@
     height: 32px;
 }
 
-.calendar-block{
+.calendar-block {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 48px;
+    height: 7vh;
     width: 100%;
 }
 
-.days-container{
+.days-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
 
 }
 
-.events-container{
+.events-container {
     display: flex;
     flex-direction: row;
 }

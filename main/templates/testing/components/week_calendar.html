@@ -4,10 +4,10 @@
     {% for day in days_info %}
         <div class="calendar-day-column">
             <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-               class="calendar-day-title text-decoration-none">{{ day.0 }}</a>
+               class="calendar-day-title text-decoration-none mb-3">{{ day.0 }}</a>
             {% for event in day.1 %}
-                <p class="calendar-block">
-                    <img src="{{ event.photo.url }}" alt="{{ event }}" height="32px" width="32px">
+                <p class="calendar-block m-1">
+                    <img src="{{ event.photo.url }}" alt="{{ event }}" height="100%">
                 </p>
             {% endfor %}
         </div>

@@ -5,6 +5,5 @@ if (errorsDiv.textContent.trim() !== '') {
     let password = document.getElementById('password');
     username.classList.add('is-invalid');
     password.classList.add('is-invalid');
-    console.log('kdsja');
 }
 

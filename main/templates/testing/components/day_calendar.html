@@ -6,10 +6,10 @@
         {% for day in days_info %}
             {% if day.0 == current_day %}
                 <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-                   class="calendar-day-title text-decoration-none">{{ current_day.upper }}</a>
+                   class="calendar-day-title text-decoration-none mb-3">{{ current_day.upper }}</a>
             {% else %}
                 <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-                   class="calendar-day-title text-decoration-none">{{ day.0 }}</a>
+                   class="calendar-day-title text-decoration-none mb-3">{{ day.0 }}</a>
             {% endif %}
         {% endfor %}
     </div>
@@ -17,7 +17,7 @@
         {% for day in days_info %}
             {% if day.0 == current_day %}
                 {% for event in day.1 %}
-                    <p>
+                    <p class="calendar-block m-0">
                         <img src="{{ event.photo.url }}" alt="{{ event }}" height="128px" width="128px">
                     </p>
                 {% endfor %}
