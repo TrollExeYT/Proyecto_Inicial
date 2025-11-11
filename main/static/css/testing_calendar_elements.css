@@ -34,6 +34,18 @@
     width: 100%;
 }
 
+.calendar-block-expanded {
+    height: calc(7vh * 3 + .25rem * 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(270deg);
+}
+
+.initial-column {
+    width: 64px;
+}
+
 .days-container {
     display: flex;
     flex-direction: row;

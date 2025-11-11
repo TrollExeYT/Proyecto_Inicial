@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 # Funcion para guardar la imagen
 def event_photo_path(instance, filename):
     return f"event_photos/{filename}"
+
 
 # Modelo de los eventos predeterminados
 class Event(models.Model):
@@ -17,8 +19,10 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+
 def calendar_photo_path(instance, filename):
     return f"users/{instance.user.id}/{filename}"
+
 
 # Calendarios bacanes
 class Calendar(models.Model):
@@ -31,6 +35,7 @@ class Calendar(models.Model):
 
     def __str__(self):
         return f"{self.name} de {self.user.username}"
+
 
 # Conectores y divisores de eventos
 # Crear una view específica para
@@ -46,7 +51,7 @@ class EventConnector(models.Model):
     )
 
     GROUPS = (
-        (0, 'Dia'),
+        (0, 'Mañana'),
         (1, 'Tarde'),
         (2, 'Noche'),
     )

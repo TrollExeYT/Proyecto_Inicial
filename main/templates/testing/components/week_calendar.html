@@ -1,6 +1,12 @@
 {% load static %}
 
 <div class="calendar-main-container centered">
+    <div class="calendar-day-column initial-column">
+        <p class="calendar-day-title">Dias:</p>
+        <p class="calendar-block-expanded m-1">Mañana</p>
+        <p class="calendar-block-expanded m-1">Tarde</p>
+        <p class="calendar-block-expanded m-1">Noche</p>
+    </div>
     {% for day in days_info %}
         <div class="calendar-day-column">
             <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
