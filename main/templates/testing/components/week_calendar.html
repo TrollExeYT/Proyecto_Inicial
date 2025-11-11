@@ -2,13 +2,14 @@
 
 <div class="calendar-main-container centered">
     {% for day in days_info %}
-    <div class="calendar-day-column">
-        <a href="{% url 'view_calendar' calendar_info.id day.2 %}" class="calendar-day-title">{{ day.0 }}</a>
-        {% for event in day.1 %}
-            <p class="calendar-block">
-                <img src="{{ event.photo.url }}" alt="{{ event }}" height="32px" width="32px">
-            </p>
-        {% endfor %}
-    </div>
+        <div class="calendar-day-column">
+            <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
+               class="calendar-day-title text-decoration-none">{{ day.0 }}</a>
+            {% for event in day.1 %}
+                <p class="calendar-block">
+                    <img src="{{ event.photo.url }}" alt="{{ event }}" height="32px" width="32px">
+                </p>
+            {% endfor %}
+        </div>
     {% endfor %}
 </div>

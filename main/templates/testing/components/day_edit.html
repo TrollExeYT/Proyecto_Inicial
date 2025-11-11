@@ -4,22 +4,25 @@
     <a href="{% url 'edit_calendar' calendar_info.id 0 %}" class="calendar-day-title">Vista completa</a>
     <div class="days-container">
         {% for day in days_info %}
-        	{% if day.0 == current_day %}
-                <a href="{% url 'edit_calendar' calendar_info.id day.2 %}" class="calendar-day-title">{{ current_day.upper }}</a>
-        	{% else %}
-        		<a href="{% url 'edit_calendar' calendar_info.id day.2 %}" class="calendar-day-title">{{ day.0 }}</a>
-        	{% endif %}
+            {% if day.0 == current_day %}
+                <a href="{% url 'edit_calendar' calendar_info.id day.2 %}"
+                   class="calendar-day-title text-decoration-none">{{ current_day.upper }}</a>
+            {% else %}
+                <a href="{% url 'edit_calendar' calendar_info.id day.2 %}"
+                   class="calendar-day-title text-decoration-none">{{ day.0 }}</a>
+            {% endif %}
         {% endfor %}
     </div>
     <div class="events-container">
         {% for day in days_info %}
-        	{% if day.0 == current_day %}
-        		{% for event in day.1 %}
-                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}" data-division="{{ event.1.2 }}">
+            {% if day.0 == current_day %}
+                {% for event in day.1 %}
+                    <p class="calendar-block" data-day="{{ event.1.0 }}" data-group="{{ event.1.1 }}"
+                       data-division="{{ event.1.2 }}">
                         <img src="{{ event.0.photo.url }}" alt="{{ event.0 }}" height="64px" width="64px">
                     </p>
-        		{% endfor %}
-        	{% endif %}
+                {% endfor %}
+            {% endif %}
         {% endfor %}
     </div>
 </div>

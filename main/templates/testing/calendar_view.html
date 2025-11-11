@@ -7,22 +7,24 @@
 {% endblock %}
 
 {% block left-bar %}
-	<p>{{ calendar_info }}</p>
+    <div>{{ calendar_info }}</div>
 {% endblock %}
 
 {% block right-bar %}
     <ul class="nav justify-content-center">
-    <li class="nav-item">
-        <a href="{% url 'edit_calendar' calendar_info.id type_view %}" class="btn btn-primary active" aria-current="page">Editar</a>
+        <li class="nav-item">
+            <a href="{% url 'edit_calendar' calendar_info.id type_view %}" class="btn btn-primary active me-3"
+               aria-current="page">Editar</a>
 
-    </li>
-    <li class="nav-item">
-        <a href="{% url 'select_calendar' %}" class="btn btn-primary active" aria-current="page"> Volver al Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'select_calendar' %}" class="btn btn-primary active me-3" aria-current="page"> Volver al
+                Inicio</a>
 
-    </li>
+        </li>
     </ul>
 {% endblock %}
 
 {% block content %}
-	{% include calendar_comp %}
+    {% include calendar_comp %}
 {% endblock %}

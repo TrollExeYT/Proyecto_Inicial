@@ -7,20 +7,24 @@
 {% endblock %}
 
 {% block left-bar %}
-    <p>{{ calendar_info }}</p>
+    <div>{{ calendar_info }}</div>
 {% endblock %}
 
 {% block right-bar %}
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    </li>
-    <li class="page-item"><a class="page-link" href="{% url 'clean_calendar' calendar_info.id %}">Limpiar Calendario</a></li>
-    <li class="page-item"><a class="page-link" href="{% url 'confirm_events' calendar_info.id %}">Confirmar</a></li>
-    <li class="page-item"><a class="page-link" href="{% url 'view_calendar' calendar_info.id 0 %}">Volver</a></li>
-    <li class="page-item"><a class="page-link" href="{% url 'undo_events' calendar_info.id %}">Deshacer cambio</a></li>
-    </li>
-  </ul>
-</nav>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end me-3 mb-0">
+            </li>
+            <li class="page-item"><a class="page-link" href="{% url 'clean_calendar' calendar_info.id %}">Limpiar
+                Calendario</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'confirm_events' calendar_info.id %}">Confirmar</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="{% url 'view_calendar' calendar_info.id 0 %}">Volver</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="{% url 'undo_events' calendar_info.id %}">Deshacer
+                cambio</a></li>
+            </li>
+        </ul>
+    </nav>
 
 {% endblock %}
 
@@ -32,7 +36,7 @@
         <p class="event-element">Imágenes</p>
         <ul>
             {% for event in events %}
-                <li class="event-element event-block" data-id="{{ event.id}}" draggable="true">
+                <li class="event-element event-block" data-id="{{ event.id }}" draggable="true">
                     <img src="{{ event.photo.url }}" alt="{{ event.name }}" height="100px" width="100px">
                 </li>
             {% endfor %}
