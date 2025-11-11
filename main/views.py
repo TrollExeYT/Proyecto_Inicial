@@ -54,7 +54,7 @@ def user_signup(request):
                     password=request.POST['password1']
                 )
                 user.save()
-                context['message'] = 'Usuario creado correctamente'
+                context['message'] = '¡Usuario creado correctamente!'
             except ValueError:
                 context['message'] = 'Ya existe nombre usuario con este nombre'
     return render(request, 'testing/sign_up.html', context)

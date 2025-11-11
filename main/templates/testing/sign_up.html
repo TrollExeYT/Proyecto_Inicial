@@ -2,44 +2,55 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'signup' %}" method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-            <div class="form-text">{{ form.username.help_text }}</div>
-            <div class="form-text">
-                {{ form.username.errors }}
+    <div class="form-signup w-100 m-auto p-3">
+        <form action="{% url 'signup' %}" method="POST" class="card-body">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal text-center">Registrarse</h1>
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                <div class="form-text mb-1">{{ form.username.help_text }}</div>
+                <input type="text" name="username" class="form-control" autofocus autocapitalize="none"
+                       autocomplete="username" maxlength="150" required id="username">
+                <div id="user-error" class="form-text invalid-feedback">
+                    {{ form.username.errors }}
+                </div>
             </div>
-            <input type="text" name="username" class="form-control" autofocus autocapitalize="none"
-                   autocomplete="username" maxlength="150" required id="username">
-        </div>
-        <div class="mb-3">
-            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-            <div class="form-text">{{ form.password1.help_text }}</div>
-            <div class="form-text">
-                {{ form.password1.errors }}
+            <div class="mb-3">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                <div class="form-text mb-1">{{ form.password1.help_text }}</div>
+                <input type="password" name="password1" autocomplete="new_password" class="form-control" required
+                       id="password1">
+                <div id='pass1-error' class="form-text invalid-feedback">
+                    {{ form.password1.errors }}
+                </div>
             </div>
-            <input type="password" name="password1" autocomplete="new_password" class="form-control" required
-                   id="password1">
-        </div>
-        <div class="mb-3">
-            <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-            <div class="form-text">{{ form.password2.help_text }}</div>
-            <div class="form-text">
-                {{ form.password2.errors }}
+            <div class="mb-3">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                <div class="form-text mb-1">{{ form.password2.help_text }}</div>
+                <input type="password" name="password2" autocomplete="new_password" class="form-control" required
+                       id="password2">
+                <div id="pass2-error" class="form-text invalid-feedback">
+                    {{ form.password2.errors }}
+                </div>
             </div>
-            <input type="password" name="password2" autocomplete="new_password" class="form-control" required
-                   id="password2">
-        </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
-    </form>
-    <br>
-    <p>{{ message }}</p>
-    <br>
-    <a class="btn btn-outline-secondary" href="{% url 'login' %}" role="button">Iniciar sesión</a>
+            <p class="text-center link-success text-decoration-none">{{ message }}</p>
+            <div class="form-buttons d-flex">
+                <button type="submit" class="btn btn-primary w-50">Registrarse</button>
+                <p class="form-text m-0 mt-2 h-auto w-50 text-center">
+                    ¿Ya tienes cuenta?
+                    <a href="{% url 'login' %}" class="text-decoration-none p-auto">
+                        Inicia sesión
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 
+{% block hidden %}
+    <script src="{% static 'js/signup.js' %}"></script>
+{% endblock %}
