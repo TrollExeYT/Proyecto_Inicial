@@ -25,13 +25,15 @@
 {% block content %}
 
     {% for calendar in info %}
-        <div class="view-calendar-container">
-            <a href="{% url 'view_calendar' calendar.id 0 %}">
-                <img class="hexagon" src="{{ calendar.photo.url }}" alt="" height="128px" width="128px">
-            </a>
-            <p>{{ calendar.name }}</p>
-            <a href="{% url 'delete_calendar' calendar.id %}" class="btn btn-danger active" aria-current="page">
-                Borrar ⛔</a>
+        <div class="view-calendar-container border">
+            <div class="view-calendar-container">
+                <a href="{% url 'view_calendar' calendar.id 0 %}">
+                    <img class="hexagon" src="{{ calendar.photo.url }}" alt="" height="128px" width="128px">
+                </a>
+                <p>{{ calendar.name }}</p>
+                <a href="{% url 'delete_calendar' calendar.id %}" class="btn btn-danger active" aria-current="page">
+                    Borrar ⛔</a>
+            </div>
         </div>
     {% empty %}
         <div class="card">

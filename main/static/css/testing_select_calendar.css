@@ -9,6 +9,12 @@
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
 }
 
+.border {
+    height: 252px;
+    width: 252px;
+    background-color: var(--border-color) !important;
+}
+
 .view-calendar-container p, .view-calendar-container a {
-    padding: 4px;
+    padding: 2px !important;
 }
