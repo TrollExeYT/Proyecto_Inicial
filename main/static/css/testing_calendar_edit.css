@@ -2,26 +2,26 @@ main {
     display: flex;
 }
 
-.centered{
+.centered {
     display: flex;
     flex-direction: column;
     align-items: center
 }
 
-.main-calendar-container{
+.main-calendar-container {
     justify-content: center;
     height: 100%;
     width: 75%;
 }
 
-.events-container{
-    background-color: #feca4a;
+.events-container {
+    background-color: var(--bg-element);
     height: 100%;
     width: 25%;
-    border-left: #f8b351 solid 2px;
+    border-left: var(--border-color) solid 2px;
 }
 
-.event-element{
+.event-element {
     padding: 8px;
 }
 
@@ -29,9 +29,10 @@ main {
     display: flex;
 }
 
-.calendar-container a{
+.calendar-container a {
     padding: 0 8px;
 }
+
 /*
 .in-movement {
     position: absolute;
