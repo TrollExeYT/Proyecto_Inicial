@@ -18,7 +18,7 @@
     <form action="{% url 'create_calendar' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="button" class="btn btn-info">Crear</button>
+        <button type="button" class="btn btn-success">Crear</button>
     </form>
 
 {% endblock %}
