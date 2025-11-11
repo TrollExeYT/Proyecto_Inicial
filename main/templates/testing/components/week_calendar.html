@@ -2,18 +2,19 @@
 
 <div class="calendar-main-container centered">
     <div class="calendar-day-column initial-column">
-        <p class="calendar-day-title">Dias:</p>
-        <p class="calendar-block-expanded m-1">Mañana</p>
-        <p class="calendar-block-expanded m-1">Tarde</p>
-        <p class="calendar-block-expanded m-1">Noche</p>
+        <p class="calendar-day-title"></p>
+        <p class="calendar-block-expanded m-1 morning"><span>Mañana</span></p>
+        <p class="calendar-block-expanded m-1 afternoon"><span>Tarde</span></p>
+        <p class="calendar-block-expanded m-1 night"><span>Noche</span></p>
     </div>
     {% for day in days_info %}
         <div class="calendar-day-column">
             <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-               class="calendar-day-title text-decoration-none mb-3">{{ day.0 }}</a>
+               class="calendar-day-title text-decoration-none text-center mb-3">{{ day.0 }}
+            </a>
             {% for event in day.1 %}
                 <p class="calendar-block m-1">
-                    <img src="{{ event.photo.url }}" alt="{{ event }}" height="100%">
+                    <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event }}" height="100%">
                 </p>
             {% endfor %}
         </div>

@@ -18,7 +18,8 @@
             {% if day.0 == current_day %}
                 {% for event in day.1 %}
                     <p class="calendar-block m-0">
-                        <img src="{{ event.photo.url }}" alt="{{ event }}" height="128px" width="128px">
+                        <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event }}"
+                             height="128px" width="128px">
                     </p>
                 {% endfor %}
             {% endif %}

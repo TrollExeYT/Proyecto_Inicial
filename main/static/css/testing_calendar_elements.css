@@ -1,5 +1,6 @@
 .calendar-main-container {
     display: flex;
+    overflow: auto;
     background-color: var(--bg-element);
     border: var(--border-color) solid 2px;
     padding: 16px;
@@ -39,21 +40,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.calendar-block-expanded span {
     transform: rotate(270deg);
 }
 
 .initial-column {
-    width: 64px;
+    width: 48px;
 }
 
 .days-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
 
+.edit-container {
+    background-color: var(--bg-element);
+    width: 25%;
+    border-left: var(--border-color) solid 2px;
 }
 
 .events-container {
     display: flex;
     flex-direction: row;
+}
+
+.morning {
+    background-color: cyan;
+    color: white;
+}
+
+.afternoon {
+    background-color: orange;
+    color: white;
+}
+
+.night {
+    background-color: black;
+    color: white;
 }

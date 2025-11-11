@@ -36,12 +36,19 @@
     <div class="main-calendar-container centered">
         {% include calendar_comp %}
     </div>
-    <div class="events-container centered">
-        <p class="event-element">Imágenes 🖼️</p>
-        <ul>
+    <div class="edit-container centered">
+        <p class="event-element m-1">Imágenes 🖼️</p>
+        <label for="" class="mb-3">
+            Buscar:
+            <input type="text">
+        </label>
+        <ul class="row row-cols-auto p-3 w-100 justify-content-center">
             {% for event in events %}
-                <li class="event-element event-block" data-id="{{ event.id }}" draggable="true">
-                    <img src="{{ event.photo.url }}" alt="{{ event.name }}" height="100px" width="100px">
+                <li class="event-element event-block col text-decoration-none list-group-item m-2 p-1"
+                    data-id="{{ event.id }}"
+                    draggable="true">
+                    <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event.name }}"
+                         height="96px" width="96px">
                 </li>
             {% endfor %}
         </ul>
