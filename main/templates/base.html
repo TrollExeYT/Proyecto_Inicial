@@ -16,7 +16,8 @@
 <body>
 <div class="nav-bar d-flex flex-wrap justify-content-center">
     <div class="d-flex align-items-center me-lg-auto">
-        <img class="nav-bar-logo" src="{% static 'images/icon.png' %}" alt="Logo" height="64px" width="64px">
+        <a href="{% url 'home' %}"><img class="nav-bar-logo" src="{% static 'images/icon.png' %}" alt="Logo"
+                                        height="64px" width="64px"></a>
         <span class="fs-4 me-3">ABEJJAS</span>
         {% block left-bar %}
 
