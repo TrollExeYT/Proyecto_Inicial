@@ -3,6 +3,11 @@
     margin: 0;
 }
 
+:root {
+    --bg-color: #fede54;
+    --border-color: #f8b351;
+    --bg-element: #feca4a;
+}
 
 body {
     height: 100vh;
@@ -12,18 +17,19 @@ body {
 main {
     width: 100%;
     height: calc(100vh - 64px);
-    background-color: #fede54;
+    background-color: var(--bg-color);
 }
 
 .navbar-color {
-    background-color: #feca4a;
-    border-bottom: #f8b351 solid 2px;
+    background-color: var(--bg-element);
+    border-bottom: var(--border-color) solid 2px;
 }
 
 .nav-bar {
-    background-color: #feca4a;
+    background-color: var(--bg-element);
     height: 64px;
-    border-bottom: #f8b351 solid 2px;
+    min-height: 64px;
+    border-bottom: var(--border-color) solid 2px;
 }
 
 .div-nav-bar p {
@@ -38,4 +44,10 @@ main {
 
 .hidden {
     display: none;
+}
+
+@media (min-width: 800px) {
+    .navbar-color {
+        height: auto;
+    }
 }
