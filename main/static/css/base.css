@@ -46,8 +46,17 @@ main {
     display: none;
 }
 
-@media (min-width: 800px) {
-    .navbar-color {
+@media (max-width: 800px) {
+    .nav-bar {
+        height: auto;
+    }
+
+    .nav-bar * {
+        margin-bottom: 4px;
+    }
+
+    main {
+        min-height: calc(100vh - 64px);
         height: auto;
     }
 }
