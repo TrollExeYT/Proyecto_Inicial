@@ -31,7 +31,8 @@
                     <img class="hexagon" src="{{ calendar.photo.url }}" alt="" height="128px" width="128px">
                 </a>
                 <p>{{ calendar.name }}</p>
-                <a href="{% url 'delete_calendar' calendar.id %}" class="btn btn-danger active" aria-current="page">
+                <a href="{% url 'delete_calendar' calendar.id %}" class="btn btn-danger active px-2"
+                   aria-current="page">
                     Borrar ⛔</a>
             </div>
         </div>
