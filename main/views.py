@@ -7,6 +7,10 @@ from .forms import CalendarForm, AddEventConnectorForm
 from .models import *
 
 
+def index(request):
+    return render(request, 'index.html')
+
+
 def user_login(request):
     if request.user.is_authenticated:
         return redirect('select_calendar')
@@ -25,9 +29,11 @@ def user_login(request):
         return redirect('select_calendar')
     return render(request, 'testing/login.html', context)
 
+
 def user_logout(request):
     logout(request)
     return redirect('login')
+
 
 def user_signup(request):
     if request.user.is_authenticated:
@@ -61,6 +67,7 @@ def select_calendar(request):
     }
     return render(request, 'testing/calendar_select.html', context)
 
+
 @login_required(login_url='login')
 def create_calendar(request):
     context = {
@@ -84,6 +91,8 @@ def create_calendar(request):
             pass
 
     return render(request, 'testing/create_calendar.html', context)
+
+
 @login_required(login_url='login')
 def delete_calendar(request, calendar_id):
     calendar = Calendar.objects.get(id=calendar_id)
@@ -91,6 +100,7 @@ def delete_calendar(request, calendar_id):
         return redirect('select_calendar')
     calendar.delete()
     return redirect('select_calendar')
+
 
 @login_required(login_url='login')
 def clean_calendar(request, calendar_id):
@@ -104,6 +114,7 @@ def clean_calendar(request, calendar_id):
 
     return redirect('edit_calendar', calendar_id=calendar.id, type_view=0)
 
+
 @login_required(login_url='login')
 def view_calendar(request, calendar_id, type_view):
     calendar = Calendar.objects.get(id=calendar_id)
@@ -116,8 +127,10 @@ def view_calendar(request, calendar_id, type_view):
         data = []
         for group in range(len(EventConnector.GROUPS)):
             for division in range(len(EventConnector.DIVISIONS)):
-                if EventConnector.objects.filter(calendar=calendar ,day=day, group=group, division=division, confirmed=True).exists():
-                    data.append(EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event)
+                if EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division,
+                                                 confirmed=True).exists():
+                    data.append(EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division,
+                                                           confirmed=True).event)
                 else:
                     data.append(Event.objects.get(name='Default'))
 
@@ -149,6 +162,7 @@ def view_calendar(request, calendar_id, type_view):
 
     return render(request, 'testing/calendar_view.html', context)
 
+
 @login_required(login_url='login')
 def edit_calendar(request, calendar_id, type_view):
     calendar = Calendar.objects.get(id=calendar_id)
@@ -161,17 +175,21 @@ def edit_calendar(request, calendar_id, type_view):
         data = []
         for group in range(len(EventConnector.GROUPS)):
             for division in range(len(EventConnector.DIVISIONS)):
-                if EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=False).exists():
+                if EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division,
+                                                 confirmed=False).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=False).event,
+                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division,
+                                                       confirmed=False).event,
                             [day, group, division]
                         ]
                     )
-                elif EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division, confirmed=True).exists():
+                elif EventConnector.objects.filter(calendar=calendar, day=day, group=group, division=division,
+                                                   confirmed=True).exists():
                     data.append(
                         [
-                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division, confirmed=True).event,
+                            EventConnector.objects.get(calendar=calendar, day=day, group=group, division=division,
+                                                       confirmed=True).event,
                             [day, group, division]
                         ]
                     )
@@ -208,8 +226,8 @@ def edit_calendar(request, calendar_id, type_view):
     else:
         context['calendar_comp'] = './components/week_edit.html'
 
-
     return render(request, 'testing/calendar_edit.html', context)
+
 
 @login_required(login_url='login')
 def confirm_events(request, calendar_id):
@@ -239,6 +257,7 @@ def confirm_events(request, calendar_id):
 
     return redirect('view_calendar', calendar_id=calendar_id, type_view=0)
 
+
 @login_required(login_url='login')
 def undo_events(request, calendar_id):
     if Calendar.objects.get(id=calendar_id).user != request.user:
@@ -253,6 +272,7 @@ def undo_events(request, calendar_id):
         event.delete()
 
     return redirect('edit_calendar', calendar_id=calendar_id, type_view=0)
+
 
 @login_required(login_url='login')
 def add_event(request, calendar_id, type_view):
