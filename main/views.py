@@ -76,7 +76,7 @@ def create_calendar(request):
     }
     if request.method == "POST":
         try:
-            if Calendar.objects.get(name=request.POST['name'], user=request.user) is None:
+            if len(Calendar.objects.filter(name=request.POST['name'], user=request.user)) == 0:
                 calendar = Calendar.objects.create(
                     user=request.user,
                     name=request.POST['name'],
