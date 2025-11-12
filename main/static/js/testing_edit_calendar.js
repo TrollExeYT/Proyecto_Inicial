@@ -5,7 +5,7 @@ let eventSelected = false
 const eventsBlocks = document.querySelectorAll('.event-block');
 // Bloques en la agenda
 const calendarBlocks = document.querySelectorAll('.calendar-block');
-
+/*
 const deleteBlock = document.getElementById('delete-block');
 
 deleteBlock.addEventListener('click', (e) => {
@@ -13,7 +13,7 @@ deleteBlock.addEventListener('click', (e) => {
     event.setAttribute('value', String(deleteBlock.dataset.id));
     eventSelected = true;
 })
-
+*/
 eventsBlocks.forEach((block) => {
     block.addEventListener('click', () => SetEvent(block));
     block.addEventListener('dragstart', () => SetEvent(block));

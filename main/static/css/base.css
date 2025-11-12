@@ -62,10 +62,6 @@ main {
         margin-bottom: 4px;
     }
 
-    .landscape {
-        display: flex;
-    }
-
     main {
         min-height: calc(100vh - 64px);
         height: 100%;
