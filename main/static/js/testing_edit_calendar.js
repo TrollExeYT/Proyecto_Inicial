@@ -7,8 +7,8 @@ const eventsBlocks = document.querySelectorAll('.event-block');
 const calendarBlocks = document.querySelectorAll('.calendar-block');
 
 eventsBlocks.forEach((block) => {
-    block.addEventListener('click', () => SetEvent(block.dataset.id));
-    block.addEventListener('dragstart', () => SetEvent(block.dataset.id));
+    block.addEventListener('click', () => SetEvent(block));
+    block.addEventListener('dragstart', () => SetEvent(block));
 })
 /*
 // SE INTENTO AÑADIR DRAG AND DROP PARA MÓVILES (No se pudo)
@@ -38,13 +38,27 @@ calendarBlocks.forEach((block) => block.addEventListener('dragover', e => {
 
 calendarBlocks.forEach((block) => {
     block.addEventListener('drop', () => SetLocation(block));
-    block.addEventListener('click', e => SetLocation(block));
+    block.addEventListener('click', () => SetLocation(block));
 })
 
-function SetEvent(id_event) {
+function SetEvent(block) {
     // Para seleccionar un evento
     let event = document.getElementById('id_event');
-    event.setAttribute('value', String(id_event));
+    event.setAttribute('value', String(block.dataset.id));
+
+    let info = document.querySelectorAll('.selected');
+    info.forEach(item => {
+        item.classList.remove('border');
+        item.classList.remove('border-4');
+        item.classList.remove('border-light');
+        item.classList.remove('selected')
+    })
+
+    let img = block.getElementsByTagName('img')[0];
+    img.classList.add('border');
+    img.classList.add('border-4');
+    img.classList.add('border-light');
+    img.classList.add('selected')
     eventSelected = true;
 }
 
