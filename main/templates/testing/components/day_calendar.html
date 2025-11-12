@@ -1,6 +1,6 @@
 {% load static %}
 {#  #}
-<div class="calendar-main-container calendar-day-container centered">
+<div class="calendar-main-container calendar-day-container centered rounded">
     <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title">Vista completa</a>
     <div class="days-container">
         {% for day in days_info %}

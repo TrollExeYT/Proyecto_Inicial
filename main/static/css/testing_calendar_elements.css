@@ -74,10 +74,20 @@
 
 .afternoon {
     background-color: rgb(255, 125, 246);
-    color:rgb(20, 30, 41);
+    color: rgb(20, 30, 41);
 }
 
 .night {
     background-color: rgb(44, 34, 150);
     color: white;
+}
+
+@media (orientation: portrait) {
+    main {
+        display: none !important;
+    }
+
+    .landscape {
+        display: flex !important;
+    }
 }

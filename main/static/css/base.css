@@ -46,6 +46,13 @@ main {
     display: none;
 }
 
+.landscape {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+}
+
 @media (max-width: 800px) {
     .nav-bar {
         height: auto;
@@ -53,6 +60,10 @@ main {
 
     .nav-bar * {
         margin-bottom: 4px;
+    }
+
+    .landscape {
+        display: flex;
     }
 
     main {
