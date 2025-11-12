@@ -34,15 +34,17 @@
     </div>
     <div class="edit-container centered">
         <p class="event-element m-1">Imágenes 🖼️</p>
-        <label for="" class="mb-3">
-            Buscar:
-            <input type="text">
-        </label>
-        <p id="delete-block" class="event-block test-danger p-2 rounded text-bg-danger"
-           data-id="{{ delete_event.id }}"
-           draggable="true">
-            <img class="rounded" src="{% static 'images/erase_icon.png' %}" alt="" height="40px" width="40px">
-        </p>
+        <div class="d-flex">
+            <label for="" class="my-2 me-3">
+                <input class="form-control" type="search" placeholder="Buscar">
+            </label>
+            <p id="delete-block" class="event-block test-danger rounded"
+               data-id="{{ delete_event.id }}"
+               draggable="true">
+                <img class="rounded text-bg-danger p-2" src="{% static 'images/erase_icon.png' %}" alt="" height="50px"
+                     width="50px">
+            </p>
+        </div>
         <ul class="row row-cols-auto p-3 w-100 justify-content-center list-events">
             {% for event in events %}
                 <li class="event-element event-block col text-decoration-none list-group-item m-2 p-1"
