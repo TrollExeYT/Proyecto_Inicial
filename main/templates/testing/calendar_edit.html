@@ -13,19 +13,15 @@
 {% block right-bar %}
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end me-2 mb-0">
-            </li>
             <li class="page-item"><a class="page-link bg-primary text-light"
-                                     href="{% url 'clean_calendar' calendar_info.id %}">Limpiar
-                Calendario 🧹</a></li>
+                                     href="{% url 'undo_events' calendar_info.id %}">Deshacer
+                cambios ↩️</a>
+            </li>
             <li class="page-item"><a class="page-link bg-primary text-light"
                                      href="{% url 'confirm_events' calendar_info.id %}">Confirmar 👌</a>
             </li>
             <li class="page-item"><a class="page-link bg-primary text-light"
                                      href="{% url 'view_calendar' calendar_info.id 0 %}">Volver 🔁</a>
-            </li>
-            <li class="page-item"><a class="page-link bg-primary text-light"
-                                     href="{% url 'undo_events' calendar_info.id %}">Deshacer
-                cambio ↩️</a></li>
             </li>
         </ul>
     </nav>
@@ -42,12 +38,13 @@
             Buscar:
             <input type="text">
         </label>
+        <button id="delete-block" class="btn" data-id="{{ delete_event.id }}">Borrar (Emoji de goma)</button>
         <ul class="row row-cols-auto p-3 w-100 justify-content-center">
             {% for event in events %}
                 <li class="event-element event-block col text-decoration-none list-group-item m-2 p-1"
                     data-id="{{ event.id }}"
                     draggable="true">
-                    <img class=" rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event.name }}"
+                    <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event.name }}"
                          height="96px" width="96px">
                 </li>
             {% endfor %}

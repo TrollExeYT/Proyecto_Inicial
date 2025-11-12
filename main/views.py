@@ -212,6 +212,7 @@ def edit_calendar(request, calendar_id, type_view):
         'events': Event.objects.filter(visible=True),
         'type_view': type_view,
         'form': AddEventConnectorForm(),
+        'delete_event': Event.objects.get(name='Default'),
         'calendar_comp': '',
         'current_day': '',
     }

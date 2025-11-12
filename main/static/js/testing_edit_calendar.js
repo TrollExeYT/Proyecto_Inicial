@@ -6,6 +6,14 @@ const eventsBlocks = document.querySelectorAll('.event-block');
 // Bloques en la agenda
 const calendarBlocks = document.querySelectorAll('.calendar-block');
 
+const deleteBlock = document.getElementById('delete-block');
+
+deleteBlock.addEventListener('click', (e) => {
+    let event = document.getElementById('id_event');
+    event.setAttribute('value', String(deleteBlock.dataset.id));
+    eventSelected = true;
+})
+
 eventsBlocks.forEach((block) => {
     block.addEventListener('click', () => SetEvent(block));
     block.addEventListener('dragstart', () => SetEvent(block));
@@ -41,18 +49,21 @@ calendarBlocks.forEach((block) => {
     block.addEventListener('click', () => SetLocation(block));
 })
 
+
 function SetEvent(block) {
     // Para seleccionar un evento
     let event = document.getElementById('id_event');
     event.setAttribute('value', String(block.dataset.id));
 
     let info = document.querySelectorAll('.selected');
+
     info.forEach(item => {
         item.classList.remove('border');
         item.classList.remove('border-4');
         item.classList.remove('border-light');
         item.classList.remove('selected')
     })
+
 
     let img = block.getElementsByTagName('img')[0];
     img.classList.add('border');
