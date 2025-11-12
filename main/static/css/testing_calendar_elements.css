@@ -63,7 +63,7 @@
 }
 
 .list-events {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .events-container {

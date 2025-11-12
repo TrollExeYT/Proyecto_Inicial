@@ -92,3 +92,25 @@ function SendForm() {
     let form = document.getElementById('form-event_connector');
     form.submit();
 }
+
+let searchInput = document.getElementById('form-search')
+
+searchInput.addEventListener('input', e => {
+    Search();
+})
+
+function Search() {
+    let input = document.getElementById('form-search')
+    let filter = input.value.toUpperCase();
+    eventsBlocks.forEach(block => {
+        let txtValue = block.dataset.name.toUpperCase();
+        console.log(txtValue.indexOf(filter));
+        if ((txtValue.indexOf(filter) !== -1 || filter.trim() === "") || (block.id === "delete-block")) {
+            block.classList.remove('hidden');
+        } else {
+            block.classList.add('hidden')
+        }
+    })
+}
+
+

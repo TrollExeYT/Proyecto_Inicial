@@ -35,11 +35,12 @@
     <div class="edit-container centered">
         <p class="event-element m-1">Imágenes 🖼️</p>
         <div class="d-flex">
-            <label for="" class="my-2 me-3">
-                <input class="form-control" type="search" placeholder="Buscar">
-            </label>
+            <form class="my-2 me-3">
+                <input id="form-search" class="form-control" type="search" placeholder="Buscar" onkeyup="Search()">
+            </form>
             <p id="delete-block" class="event-block test-danger rounded"
                data-id="{{ delete_event.id }}"
+               data-name="{{ delete_event.name }}"
                draggable="true">
                 <img class="rounded text-bg-danger p-2" src="{% static 'images/erase_icon.png' %}" alt="" height="50px"
                      width="50px">
@@ -49,6 +50,7 @@
             {% for event in events %}
                 <li class="event-element event-block col text-decoration-none list-group-item m-2 p-1"
                     data-id="{{ event.id }}"
+                    data-name="{{ event.name }}"
                     draggable="true">
                     <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event.name }}"
                          height="96px" width="96px">
