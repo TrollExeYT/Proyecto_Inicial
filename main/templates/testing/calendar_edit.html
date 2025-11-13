@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block left-bar %}
-    <div>{{ calendar_info }}</div>
+    <div class="me-3">{{ calendar_info }}</div>
 {% endblock %}
 
 {% block right-bar %}
@@ -34,8 +34,8 @@
     </div>
     <div class="edit-container centered">
         <p class="event-element m-1">Imágenes 🖼️</p>
-        <div class="d-flex">
-            <form class="my-2 me-3">
+        <div class="d-flex align-center mb-1">
+            <form class="my-2 mx-2 form-search-event">
                 <input id="form-search" class="form-control" type="search" placeholder="Buscar" onkeyup="Search()">
             </form>
             <p id="delete-block" class="event-block test-danger rounded"

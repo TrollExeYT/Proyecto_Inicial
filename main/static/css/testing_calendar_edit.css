@@ -10,8 +10,10 @@ main {
 
 .main-calendar-container {
     justify-content: center;
+    padding: 12px;
     height: 100%;
     width: 75%;
+    overflow-x: auto;
 }
 
 .events-container {

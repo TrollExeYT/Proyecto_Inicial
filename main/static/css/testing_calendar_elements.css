@@ -1,9 +1,9 @@
 .calendar-main-container {
     display: flex;
-    overflow: auto;
     background-color: var(--bg-element);
     border: var(--border-color) solid 2px;
-    padding: 16px;
+    padding: 12px;
+    margin: 8px auto;
 }
 
 .calendar-day-container {
@@ -93,5 +93,37 @@
 
     .landscape {
         display: flex !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .form-search-event {
+        margin: 0 !important;
+    }
+
+    .calendar-block {
+        display: none !important;
+    }
+
+    .initial-column {
+        display: none !important;
+    }
+
+    .calendar-main-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .calendar-day-title {
+        padding: 4px !important;
+        margin: 0 !important;
+    }
+
+    #form-search {
+        display: none;
+    }
+
+    #delete-block {
+        margin: 0 !important;
     }
 }
