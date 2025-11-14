@@ -5,6 +5,7 @@ let eventSelected = false
 const eventsBlocks = document.querySelectorAll('.event-block');
 // Bloques en la agenda
 const calendarBlocks = document.querySelectorAll('.calendar-block');
+const calendarBlocksDay = document.querySelectorAll('.calendar-block-day');
 /*
 const deleteBlock = document.getElementById('delete-block');
 
@@ -14,6 +15,7 @@ deleteBlock.addEventListener('click', (e) => {
     eventSelected = true;
 })
 */
+
 eventsBlocks.forEach((block) => {
     block.addEventListener('click', () => SetEvent(block));
     block.addEventListener('dragstart', () => SetEvent(block));
@@ -44,11 +46,19 @@ calendarBlocks.forEach((block) => block.addEventListener('dragover', e => {
     e.preventDefault();
 }))
 
+calendarBlocksDay.forEach((block) => block.addEventListener('dragover', e => {
+    e.preventDefault();
+}))
+
 calendarBlocks.forEach((block) => {
     block.addEventListener('drop', () => SetLocation(block));
     block.addEventListener('click', () => SetLocation(block));
 })
 
+calendarBlocksDay.forEach((block) => {
+    block.addEventListener('drop', () => SetLocation(block));
+    block.addEventListener('click', () => SetLocation(block));
+})
 
 function SetEvent(block) {
     // Para seleccionar un evento

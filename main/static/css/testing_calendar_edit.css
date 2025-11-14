@@ -16,13 +16,6 @@ main {
     overflow-x: auto;
 }
 
-.events-container {
-    background-color: var(--bg-element);
-    height: 100%;
-    width: 25%;
-    border-left: var(--border-color) solid 2px;
-}
-
 .event-element {
     padding: 8px;
 }

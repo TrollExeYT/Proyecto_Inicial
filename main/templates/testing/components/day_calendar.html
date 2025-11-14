@@ -1,28 +1,45 @@
 {% load static %}
 {#  #}
-<div class="calendar-main-container calendar-day-container centered rounded">
-    <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title">Vista completa</a>
-    <div class="days-container">
-        {% for day in days_info %}
-            {% if day.0 == current_day %}
-                <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-                   class="calendar-day-title text-decoration-none mb-3">{{ current_day.upper }}</a>
-            {% else %}
-                <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
-                   class="calendar-day-title text-decoration-none mb-3">{{ day.0 }}</a>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="events-container">
-        {% for day in days_info %}
-            {% if day.0 == current_day %}
-                {% for event in day.1 %}
-                    <p class="calendar-block m-0">
-                        <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event }}"
-                             height="64px" width="64px">
-                    </p>
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
+<div class="outer-container">
+    <div class="calendar-day-container centered rounded">
+        <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title text-decoration-none">Vista
+            completa</a>
+        <div class="days-container">
+            {% for day in days_info %}
+                {% if day.0 == current_day %}
+                    <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
+                       class="calendar-day-title text-decoration-none mb-3 bg-primary text-light rounded">{{ current_day }}</a>
+                {% else %}
+                    <a href="{% url 'view_calendar' calendar_info.id day.2 %}"
+                       class="calendar-day-title text-decoration-none mb-3">{{ day.0 }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="times">
+            <div class="morning">
+                Mañana
+            </div>
+            <div class="afternoon">
+                Tarde
+            </div>
+            <div class="night">
+                Noche
+            </div>
+        </div>
+        <div class="events-container">
+            {% for day in days_info %}
+                {% if day.0 == current_day %}
+                    {% for event in day.1 %}
+                        <div class="calendar-block-day m-0">
+                            <img class="rounded mx-auto d-block" src="{{ event.photo.url }}" alt="{{ event }}"
+                                 height="64px" width="64px">
+                            <p>
+                                {{ event.description }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </div>

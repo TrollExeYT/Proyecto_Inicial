@@ -6,9 +6,20 @@
     margin: 8px auto;
 }
 
+.outer-container {
+    padding: 12px;
+    overflow-x: auto;
+    width: 100%;
+}
+
 .calendar-day-container {
     display: flex;
+    width: min-content;
     flex-direction: column;
+    background-color: var(--bg-element);
+    border: var(--border-color) solid 2px;
+    padding: 12px;
+    margin: 8px auto;
 }
 
 .calendar-day-column {
@@ -22,7 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 4px;
+    padding: 4px 12px;
     text-wrap: wrap;
     height: 32px;
 }
@@ -46,6 +57,36 @@
     transform: rotate(270deg);
 }
 
+.calendar-block-day {
+    padding: 4px;
+    width: 150px;
+    height: auto;
+}
+
+.calendar-block-day p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 !important;
+    padding: 4px;
+    min-height: 50px;
+}
+
+.times {
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.times div {
+    text-align: center;
+    padding: 4px;
+    margin: 0 2px !important;
+    width: calc(100% / 3);
+}
+
 .initial-column {
     width: 48px;
 }
@@ -53,7 +94,7 @@
 .days-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .edit-container {
@@ -96,7 +137,7 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px) or (max-height: 600px) {
     .form-search-event {
         margin: 0 !important;
     }
@@ -115,8 +156,8 @@
     }
 
     .calendar-day-title {
-        padding: 4px !important;
-        margin: 0 !important;
+        padding: 4px 12px !important;
+        margin: 2px !important;
     }
 
     #form-search {
