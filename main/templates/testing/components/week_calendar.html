@@ -3,9 +3,10 @@
 <div class="calendar-main-container m-1 centered rounded">
     <div class="calendar-day-column initial-column">
         <p class="calendar-day-title"></p>
-        <p class="calendar-block-expanded m-1 morning"><span>Mañana</span></p>
-        <p class="calendar-block-expanded m-1 afternoon"><span>Tarde</span></p>
-        <p class="calendar-block-expanded m-1 night"><span>Noche</span></p>
+        <div class="calendar-block-expanded m-1 morning"><span>🌞 Mañana 🌞</span>
+        </div>
+        <p class="calendar-block-expanded m-1 afternoon"><span>🌇 Tarde 🌇</span></p>
+        <p class="calendar-block-expanded m-1 night"><span>🌙 Noche 🌙</span></p>
     </div>
     {% for day in days_info %}
         <div class="calendar-day-column">

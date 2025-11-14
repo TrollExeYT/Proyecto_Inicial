@@ -58,7 +58,11 @@
 }
 
 .calendar-block-expanded span {
+    position: absolute;
     transform: rotate(270deg);
+    display: flex;
+    flex-direction: column;
+    width: auto !important;
 }
 
 .calendar-block-day {
