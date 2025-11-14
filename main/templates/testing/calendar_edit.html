@@ -14,14 +14,14 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end me-2 mb-0">
             <li class="page-item"><a class="page-link bg-primary text-light"
-                                     href="{% url 'undo_events' calendar_info.id %}">Deshacer
+                                     href="{% url 'undo_events' calendar_info.id type_view %}">Deshacer
                 cambios ↩️</a>
             </li>
             <li class="page-item"><a class="page-link bg-primary text-light"
-                                     href="{% url 'confirm_events' calendar_info.id %}">Confirmar 👌</a>
+                                     href="{% url 'confirm_events' calendar_info.id type_view %}">Confirmar 👌</a>
             </li>
             <li class="page-item"><a class="page-link bg-primary text-light"
-                                     href="{% url 'view_calendar' calendar_info.id 0 %}">Volver 🔁</a>
+                                     href="{% url 'view_calendar' calendar_info.id type_view %}">Volver 🔁</a>
             </li>
         </ul>
     </nav>

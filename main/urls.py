@@ -13,7 +13,7 @@ urlpatterns = [
     path('edit_calendar/<int:calendar_id>/<int:type_view>', edit_calendar, name='edit_calendar'),
     path('edit_calendar/<int:calendar_id>/<int:type_view>/add_event/', add_event, name='add_event'),
     path('edit_calendar/<int:calendar_id>/clean', clean_calendar, name='clean_calendar'),
-    path('edit_calendar/<int:calendar_id>/confirm_events', confirm_events, name='confirm_events'),
-    path('edit_calendar/<int:calendar_id>/undo_events', undo_events, name='undo_events'),
+    path('edit_calendar/<int:calendar_id>/<int:type_view>/confirm_events', confirm_events, name='confirm_events'),
+    path('edit_calendar/<int:calendar_id>/<int:type_view>/undo_events', undo_events, name='undo_events'),
     path('testing', testing, name='testing'),
 ]

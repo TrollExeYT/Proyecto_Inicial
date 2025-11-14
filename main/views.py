@@ -104,6 +104,7 @@ def delete_calendar(request, calendar_id):
 
 @login_required(login_url='login')
 def clean_calendar(request, calendar_id):
+    # NO SE UTILIZA MAS
     calendar = Calendar.objects.get(id=calendar_id)
     if calendar.user != request.user:
         return redirect('select_calendar')
@@ -208,6 +209,7 @@ def edit_calendar(request, calendar_id, type_view):
 
     context = {
         'calendar_info': calendar,
+        'type_view': type_view,
         'days_info': days_info,
         'events': Event.objects.filter(visible=True),
         'type_view': type_view,
@@ -231,7 +233,7 @@ def edit_calendar(request, calendar_id, type_view):
 
 
 @login_required(login_url='login')
-def confirm_events(request, calendar_id):
+def confirm_events(request, calendar_id, type_view):
     if Calendar.objects.get(id=calendar_id).user != request.user:
         return redirect('select_calendar')
 
@@ -256,11 +258,11 @@ def confirm_events(request, calendar_id):
         event.confirmed = True
         event.save()
 
-    return redirect('view_calendar', calendar_id=calendar_id, type_view=0)
+    return redirect('view_calendar', calendar_id=calendar_id, type_view=type_view)
 
 
 @login_required(login_url='login')
-def undo_events(request, calendar_id):
+def undo_events(request, calendar_id, type_view):
     if Calendar.objects.get(id=calendar_id).user != request.user:
         return redirect('select_calendar')
 
@@ -272,7 +274,7 @@ def undo_events(request, calendar_id):
     for event in data:
         event.delete()
 
-    return redirect('edit_calendar', calendar_id=calendar_id, type_view=0)
+    return redirect('edit_calendar', calendar_id=calendar_id, type_view=type_view)
 
 
 @login_required(login_url='login')
