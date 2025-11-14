@@ -2,7 +2,8 @@
 {#  #}
 <div class="outer-container">
     <div class="calendar-day-container centered rounded">
-        <a href="{% url 'view_calendar' calendar_info.id 0 %}" class="calendar-day-title text-decoration-none">Vista
+        <a href="{% url 'view_calendar' calendar_info.id 0 %}"
+           class="calendar-day-title text-decoration-none complete-view">Vista
             completa</a>
         <div class="days-container">
             {% for day in days_info %}

@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="calendar-day-container rounded">
-    <a href="{% url 'edit_calendar' calendar_info.id 0 %}" class="calendar-day-title text-decoration-none">Vista
+    <a href="{% url 'edit_calendar' calendar_info.id 0 %}" class="calendar-day-title text-decoration-none mb-3">Vista
         completa</a>
     <div class="days-container">
         {% for day in days_info %}

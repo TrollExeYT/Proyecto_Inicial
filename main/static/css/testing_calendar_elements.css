@@ -38,6 +38,10 @@
     height: 32px;
 }
 
+.complete-view {
+    margin-bottom: 8px !important;
+}
+
 .calendar-block {
     display: flex;
     align-items: center;
@@ -158,6 +162,10 @@
     .calendar-day-title {
         padding: 4px 12px !important;
         margin: 2px !important;
+    }
+
+    .complete-view {
+        margin-bottom: 8px !important;
     }
 
     #form-search {
