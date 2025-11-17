@@ -25,7 +25,9 @@
     </div>
     <div class="d-flex align-items-center">
         {% block right-bar %}
-
+            <a href="{% url 'google_calendar:google_login' %}" class="btn btn-primary me-3" aria-current="page">
+                Conectar con Google 🗓️
+            </a>
         {% endblock %}
     </div>
 </div>
