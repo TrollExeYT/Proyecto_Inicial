@@ -98,4 +98,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 GOOGLE_CLIENT_ID = '14218174703-rui4br9tv7btmh6m0hoqq5p623tni1lv.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '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'
-GOOGLE_REDIRECT_URI = 'http://127.0.0.1:8000/google/callback/'
+GOOGLE_REDIRECT_URI = 'https://trollexeyt32.pythonanywhere.com/google/callback/'
